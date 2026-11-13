@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% block title %}DW y ETL · Integración de Datos{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+
+    <!-- ENCABEZADO -->
+    <section>
+        <span class="inline-block bg-rose-100 text-rose-800 text-xs font-bold px-3 py-2 rounded-full">
+            INGENIERÍA DE DATOS · CAPA ANALÍTICA (OLAP)
+        </span>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mt-4">
+            Data Warehouse y proceso ETL en SSIS
+        </h1>
+
+        <p class="text-slate-500 mt-3 max-w-3xl">
+            Proceso de transformación, limpieza, auditoría y carga multidimensional de los datos operacionales hacia el almacén analítico de la red de alumbrado público.
+        </p>
+    </section>
+
+    <!-- PROCESO ETL EN SSIS -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">
+            Proceso ETL en SQL Server Integration Services (SSIS)
+        </h2>
+        <p class="text-sm text-slate-500 mb-6">
+            Implementación del paquete CargaAlumbradoDW.dtsx para extraer, depurar y estructurar el millón de registros de telemetría provenientes de los postes inteligentes.
+        </p>
+
+        <div class="space-y-4">
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">1</div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-sm">Extracción masiva desde la capa operacional</h3>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">El flujo de datos se conecta a la base de datos transaccional para extraer los 1.050.000 registros generados por los 100 postes, consolidando el lote crudo listo para su procesamiento.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">2</div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-sm">Limpieza y homologación de formatos</h3>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Mediante transformaciones de conversión de datos y script components, se unifican los estados operativos a mayúsculas, se eliminan espacios sobrantes con TRIM y se validan los rangos eléctricos permitidos.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">3</div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-sm">Validación de llaves y dimensiones</h3>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Se realizan búsquedas (Lookup) contra las dimensiones del Data Warehouse para asociar las llaves surrogate correspondientes a cada poste, fecha, hora y zona urbana.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">4</div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-sm">Carga incremental y control de duplicados</h3>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Los registros válidos se insertan en la tabla de hechos garantizando que no existan duplicados en las lecturas de una misma franja horaria por dispositivo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOTOS DE SSIS (DIAGRAMA DE FLUJO Y DISEÑADOR) -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+            <div>
+                <h3 class="font-bold text-slate-900 text-base mb-1">Diagrama de flujo ETL en SSIS</h3>
+                <p class="text-xs text-slate-500 mb-4">Estructura general del flujo de control y tareas dentro del entorno de desarrollo.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col items-center justify-center">
+                <img
+                    src="{{ url_for('static', filename='img/etl_flujo.png') }}"
+                    alt="Diagrama de flujo ETL en SSIS"
+                    class="w-full h-56 object-contain rounded-lg bg-white p-2 border border-slate-200"
+                >
+                <p class="text-[11px] text-slate-400 text-center mt-2">Imagen del diagrama de flujo de tareas del paquete SSIS.</p>
+            </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+            <div>
+                <h3 class="font-bold text-slate-900 text-base mb-1">Diseñador de paquetes ETL en SSIS</h3>
+                <p class="text-xs text-slate-500 mb-4">Vista del diseñador con los orígenes, transformaciones y destinos conectados.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col items-center justify-center">
+                <img
+                    src="{{ url_for('static', filename='img/etl_disenador.png') }}"
+                    alt="Diseñador de paquetes ETL en SSIS"
+                    class="w-full h-56 object-contain rounded-lg bg-white p-2 border border-slate-200"
+                >
+                <p class="text-[11px] text-slate-400 text-center mt-2">Imagen del diseñador de flujo de datos en SQL Server.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- RAZÓN DEL RECHAZO Y AUDITORÍA -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">
+            Gestión y razones de rechazo de mediciones
+        </h2>
+        <p class="text-sm text-slate-500 mb-6">
+            Durante la ejecución del proceso ETL, el sistema evalúa reglas estrictas de calidad. Los registros que no cumplen con los parámetros son desviados a la tabla de auditoría dw.rechazo_medicion sin interrumpir la carga global.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-amber-50/70 border border-amber-200/80 p-4 rounded-xl">
+                <h3 class="font-bold text-amber-900 text-sm mb-1">Valores Nulos o Faltantes</h3>
+                <p class="text-xs text-amber-800 leading-relaxed">Mediciones donde los campos de voltaje o potencia llegan vacíos debido a microcortes de comunicación en el sensor IoT.</p>
+            </div>
+            <div class="bg-amber-50/70 border border-amber-200/80 p-4 rounded-xl">
+                <h3 class="font-bold text-amber-900 text-sm mb-1">Códigos Centinela (9999)</h3>
+                <p class="text-xs text-amber-800 leading-relaxed">Lecturas con códigos de error predeterminados por el firmware del dispositivo ante fallas críticas de circuitería.</p>
+            </div>
+            <div class="bg-amber-50/70 border border-amber-200/80 p-4 rounded-xl">
+                <h3 class="font-bold text-amber-900 text-sm mb-1">Inconsistencia Horaria</h3>
+                <p class="text-xs text-amber-800 leading-relaxed">Registros operando con estados activos fuera de la franja nocturna establecida, indicando descalibración temporal.</p>
+            </div>
+        </div>
+
+        <!-- Métricas del ETL -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                <span class="text-xs text-slate-400 uppercase font-semibold">Total Procesados</span>
+                <div class="text-xl font-bold text-slate-900 mt-1">1.050.000</div>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                <span class="text-xs text-rose-700 uppercase font-semibold">Filas Válidas (99.41%)</span>
+                <div class="text-xl font-bold text-rose-700 mt-1">1.043.772</div>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                <span class="text-xs text-amber-700 uppercase font-semibold">Rechazos Auditados</span>
+                <div class="text-xl font-bold text-amber-700 mt-1">6.228</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODELO MULTIDIMENSIONAL (DATA WAREHOUSE) Y EXPLICACIÓN DE TABLAS -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">
+            Modelo multidimensional (Data Warehouse)
+        </h2>
+        <p class="text-sm text-slate-500 mb-6">
+            Arquitectura de almacenamiento analítico diseñada bajo un esquema estrella para optimizar las consultas multidimensionales de inteligencia de negocios.
+        </p>
+
+        <!-- FOTO DEL MODELO DEL DATA WAREHOUSE -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center mb-8">
+            <img
+                src="{{ url_for('static', filename='img/dw_alumbrado.png') }}"
+                alt="Modelo dimensional del Data Warehouse de alumbrado público"
+                class="w-full max-w-4xl h-auto object-contain rounded-lg border border-slate-200 bg-white p-2"
+            >
+            <p class="text-xs text-slate-400 text-center mt-3">
+                Diagrama del esquema estrella del Data Warehouse (alumbradoDW).
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Hechos</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">fact_alumbrado</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Almacena las métricas atómicas con granularidad de 5 minutos por poste, registrando consumo eléctrico en kWh, voltajes y potencia activa medida.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Dimensión</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">dim_poste</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Contiene el detalle descriptivo de los postes de alumbrado, asociando su código identificador (P001 a P00100) y su respectiva zona urbana.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Dimensión</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">dim_zona</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Agrupa los sectores geográficos de la ciudad (Centro, Norte, Sur, Oriente y Occidente) para permitir análisis de consumo por territorio.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Dimensión</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">dim_fecha</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Estructura el calendario analítico permitiendo realizar agregaciones temporales por días, semanas, meses y años.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Dimensión</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">dim_hora</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Permite segmentar las mediciones según las franjas horarias operativas, diferenciando la operación nocturna de la diurna.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Dimensión</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">dim_estado</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Clasifica los estados operativos normalizados de las luminarias (Encendido, Apagado, Falla o Sobreconsumo) para el análisis de incidencias.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+{% endblock %}

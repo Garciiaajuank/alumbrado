@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Alumbrado Público Inteligente{% endblock %} | PGC UdeC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Barra de Navegación Superior (Estilo Rojo Profesional) -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between overflow-x-auto">
+            <!-- Logo y Título -->
+            <div class="flex items-center space-x-3 min-max">
+                <div class="bg-rose-600 text-white p-2 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-sm sm:text-base leading-tight">Alumbrado Inteligente</h1>
+                    <p class="text-xs text-slate-500">Big Data · Grupo 701T</p>
+                </div>
+            </div>
+
+            <!-- Pestañas de Navegación -->
+            <div class="flex space-x-1 sm:space-x-2 text-xs sm:text-sm font-medium">
+                <a href="{{ url_for('inicio') }}" class="px-3 py-2 rounded-lg transition {{ 'bg-rose-50 text-rose-700 font-semibold shadow-sm' if active == 'inicio' else 'text-slate-600 hover:bg-slate-100' }}">Inicio</a>
+                <a href="{{ url_for('proyecto') }}" class="px-3 py-2 rounded-lg transition {{ 'bg-rose-50 text-rose-700 font-semibold shadow-sm' if active == 'proyecto' else 'text-slate-600 hover:bg-slate-100' }}">Proyecto</a>
+                <a href="{{ url_for('maqueta') }}" class="px-3 py-2 rounded-lg transition {{ 'bg-rose-50 text-rose-700 font-semibold shadow-sm' if active == 'maqueta' else 'text-slate-600 hover:bg-slate-100' }}">Maqueta</a>
+                <a href="{{ url_for('envivo') }}" class="px-3 py-2 rounded-lg transition flex items-center space-x-1.5 {{ 'bg-rose-50 text-rose-700 font-semibold shadow-sm' if active == 'envivo' else 'text-slate-600 hover:bg-slate-100' }}">
+                    <span class="h-2 w-2 rounded-full bg-rose-500 animate-pulse"></span>
+                    <span>En vivo</span>
+                </a>
+                <a href="{{ url_for('bases_datos') }}" class="px-3 py-2 rounded-lg transition {{ 'bg-rose-50 text-rose-700 font-semibold shadow-sm' if active == 'bases_datos' else 'text-slate-600 hover:bg-slate-100' }}">MER</a>
+                <a href="{{ url_for('dw_etl') }}" class="px-3 py-2 rounded-lg transition {{ 'bg-rose-50 text-rose-700 font-semibold shadow-sm' if active == 'dw_etl' else 'text-slate-600 hover:bg-slate-100' }}">DW y ETL</a>
+                <a href="{{ url_for('dashboard') }}" class="px-3 py-2 rounded-lg transition {{ 'bg-rose-50 text-rose-700 font-semibold shadow-sm' if active == 'dashboard' else 'text-slate-600 hover:bg-slate-100' }}">Dashboard</a>
+                <a href="{{ url_for('conocimientos') }}" class="px-3 py-2 rounded-lg transition {{ 'bg-rose-50 text-rose-700 font-semibold shadow-sm' if active == 'conocimientos' else 'text-slate-600 hover:bg-slate-100' }}">Conocimientos</a>
+                <a href="{{ url_for('resultados') }}" class="px-3 py-2 rounded-lg transition {{ 'bg-rose-50 text-rose-700 font-semibold shadow-sm' if active == 'resultados' else 'text-slate-600 hover:bg-slate-100' }}">Resultados</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+        Universidad de Cundinamarca · Extensión Chía · Ingeniería de Sistemas y Computación (7.° Semestre)
+    </footer>
+
+</body>
+</html>

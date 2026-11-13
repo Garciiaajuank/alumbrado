@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Inicio · Plataforma de Alumbrado Público Inteligente{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+
+    <!-- ENCABEZADO PRINCIPAL (HERO) -->
+    <div class="bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 shadow-sm text-center max-w-4xl mx-auto">
+        <span class="text-xs font-semibold uppercase tracking-wider bg-rose-100 text-rose-800 py-1.5 px-4 rounded-full">
+            Universidad de Cundinamarca · Extensión Chía
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mt-4 mb-4">
+            Plataforma de Datos para Alumbrado Público Inteligente
+        </h1>
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+            Sistema integral que une la electrónica embebida de campo con un pipeline robusto de Big Data, transformando el control urbano tradicional en una solución eficiente, medible y sostenible.
+        </p>
+    </div>
+
+    <!-- SECCIÓN DE LA MAQUETA Y BOTONES DE ACCESO RÁPIDO -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            
+            <!-- Columna Izquierda: Imagen / Mockup de la Maqueta -->
+            <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-inner flex flex-col items-center justify-center p-6 text-center min-h-[300px]">
+                <div class="text-rose-400 text-5xl mb-3">💡</div>
+                <h3 class="text-white font-bold text-lg">Prototipo Físico (ESP32-S3 + 6 LEDs)</h3>
+                <p class="text-slate-400 text-xs mt-2 max-w-sm">
+                    Simulación de nodos urbanos (P001 a P006) con control estricto de horario nocturno, detección de fallas y telemetría en tiempo real.
+                </p>
+                <div class="mt-4 inline-flex items-center gap-2 bg-slate-800 px-3 py-1.5 rounded-full text-xs font-mono text-rose-400 border border-slate-700">
+                    <span class="h-2 w-2 rounded-full bg-rose-500 animate-pulse"></span>
+                    Estado: Operativo (18:00 - 06:00)
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Datos Clave y los Botones Solicitados -->
+            <div class="space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-2">Acceso Rápido al Sistema</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Explora la simulación en tiempo real de los nodos físicos, revisa los indicadores consolidados del Data Warehouse o consulta los hallazgos analíticos derivados de los 1.050.000 registros procesados.
+                    </p>
+                </div>
+
+                <!-- Métricas rápidas de impacto -->
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-400 uppercase font-semibold">Postes Red Global</span>
+                        <div class="text-lg font-bold text-slate-900 mt-0.5">100 Nodos</div>
+                    </div>
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-400 uppercase font-semibold">Registros ETL</span>
+                        <div class="text-lg font-bold text-rose-700 mt-0.5">1.05 Millones</div>
+                    </div>
+                </div>
+
+                <!-- Botones posicionados junto a la maqueta -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <a href="{{ url_for('envivo') }}" class="bg-rose-700 hover:bg-rose-800 text-white text-sm font-medium px-5 py-3 rounded-xl shadow-sm transition flex items-center justify-center gap-2 text-center">
+                        <span class="h-2 w-2 rounded-full bg-rose-300 animate-ping"></span>
+                        Ver Simulación en Vivo
+                    </a>
+                    <a href="{{ url_for('dashboard') }}" class="bg-white hover:bg-slate-50 text-slate-700 text-sm font-medium px-5 py-3 rounded-xl border border-slate-300 transition text-center flex items-center justify-center">
+                        Explorar Dashboard Analítico
+                    </a>
+                    <a href="{{ url_for('conocimientos') }}" class="bg-white hover:bg-slate-50 text-slate-700 text-sm font-medium px-5 py-3 rounded-xl border border-slate-300 transition text-center flex items-center justify-center">
+                        Ver Conocimientos Evidentes
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+{% endblock %}

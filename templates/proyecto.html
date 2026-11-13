@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+{% block title %}Proyecto · Plataforma de Alumbrado Público Inteligente{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+
+    <!-- 1. IDENTIFICACIÓN DEL PROYECTO -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+        <div class="flex items-center gap-3 mb-6">
+            <span class="bg-rose-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">01</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Identificación del Proyecto</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Título del Proyecto</span>
+                <p class="font-semibold text-slate-900">Plataforma de datos para alumbrado público inteligente</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Programa Académico</span>
+                <p class="font-semibold text-slate-900">Ingeniería de Sistemas y Computación</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Sede o Extensión</span>
+                <p class="font-semibold text-slate-900">Universidad de Cundinamarca · Extensión Chía</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Ciclo de Formación y Grupo</span>
+                <p class="font-semibold text-slate-900">Pregrado Profesional · 7.° Semestre · Grupo 701T</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Integrantes</span>
+                <p class="font-semibold text-slate-900">Sergio Nicolás Juyo Pamplona<br>Juan Camilo García Quevedo</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Tipo de Proyecto y Docente</span>
+                <p class="font-semibold text-slate-900">Proyecto de Gestión del Conocimiento (PGC)<br><span class="text-xs font-normal text-slate-600">Asignatura: Big Data · Doc: Ing. Edison Gustavo Cañón</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. PLANTEAMIENTO DEL PROBLEMA -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+        <div class="flex items-center gap-3 mb-6">
+            <span class="bg-rose-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">02</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Planteamiento del Problema</h2>
+        </div>
+
+        <div class="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+            <p>
+                Los sistemas convencionales de alumbrado público urbano presentan dos problemáticas críticas de gestión operativa y sostenibilidad: un elevado desperdicio energético derivado de controles horarios rígidos o descalibrados, y una detección tardía de fallas, dado que las entidades operadoras suelen enterarse de luminarias apagadas, intermitentes o con anomalías eléctricas únicamente cuando un ciudadano radica un reporte manual días o semanas después.
+            </p>
+            <p>
+                Contexto del módulo: Dentro del ecosistema de Ciudades Inteligentes, nuestro módulo aborda el Alumbrado Público Urbano. Partiendo de un prototipo electrónico con una placa ESP32-S3 y 6 LEDs que simulan postes con encendido automatizado en franja nocturna (18:00 a 06:00), se plantea la necesidad de escalar la captura de telemetría hacia una red completa de 100 postes distribuida en cinco zonas urbanas (Centro, Norte, Sur, Oriente y Occidente), capaz de transformar más de un millón de lecturas crudas en información confiable para la operación municipal.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div class="bg-amber-50/70 border border-amber-200/80 p-4 rounded-xl">
+                <h3 class="font-bold text-amber-900 text-sm mb-1">Ineficiencia Energética</h3>
+                <p class="text-xs text-amber-800 leading-relaxed">Ausencia de medición granular por poste y zona que impide detectar sobreconsumos (> 48 W) o luminarias encendidas fuera de franja.</p>
+            </div>
+            <div class="bg-amber-50/70 border border-amber-200/80 p-4 rounded-xl">
+                <h3 class="font-bold text-amber-900 text-sm mb-1">Mantenimiento Reactivo</h3>
+                <p class="text-xs text-amber-800 leading-relaxed">Falta de alertas automatizadas ante caídas de voltaje (< 105 V) o pérdida de energía en horario nocturno.</p>
+            </div>
+            <div class="bg-amber-50/70 border border-amber-200/80 p-4 rounded-xl">
+                <h3 class="font-bold text-amber-900 text-sm mb-1">Datos Crudos sin Calidad</h3>
+                <p class="text-xs text-amber-800 leading-relaxed">Los sensores IoT generan estados heterogéneos (On, Off, Fail), valores nulos y códigos centinela (9999) que invalidan cualquier análisis directo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. JUSTIFICACIÓN Y POBLACIÓN BENEFICIARIA -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+        <div class="flex items-center gap-3 mb-6">
+            <span class="bg-rose-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">03</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Justificación y Población Beneficiaria</h2>
+        </div>
+
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+            La pertinencia de esta solución radica en articular la electrónica embebida (IoT) con una arquitectura formal de Ingeniería de Datos (OLTP + ETL en SSIS + Data Warehouse en Estrella + BI). En lugar de quedarse en un montaje aislado de laboratorio, el sistema demuestra cómo estandarizar y auditar grandes volúmenes de telemetría (1.050.000 registros) para sustentar decisiones de eficiencia energética y mantenimiento preventivo alineadas con la Agenda 2030 de las Naciones Unidas:
+        </p>
+
+        <!-- Alineación ODS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="bg-rose-50/70 border border-rose-200 p-5 rounded-xl">
+                <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Objetivo de Desarrollo Sostenible</span>
+                <h3 class="text-base font-bold text-rose-950 mt-1">ODS 7: Energía Asequible y No Contaminante</h3>
+                <p class="text-xs sm:text-sm text-rose-900 mt-2 leading-relaxed">
+                    Permite cuantificar con exactitud el consumo en kilovatios-hora (kWh) por nodo, franja y zona, detectando sobreconsumos y optimizando las horas de operación eléctrica.
+                </p>
+            </div>
+            <div class="bg-rose-50/70 border border-rose-200 p-5 rounded-xl">
+                <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Objetivo de Desarrollo Sostenible</span>
+                <h3 class="text-base font-bold text-rose-950 mt-1">ODS 11: Ciudades y Comunidades Sostenibles</h3>
+                <p class="text-xs sm:text-sm text-rose-900 mt-2 leading-relaxed">
+                    Contribuye a mantener calles, parques y corredores viales debidamente iluminados durante la noche, mejorando la seguridad ciudadana y la gestión de infraestructura urbana.
+                </p>
+            </div>
+        </div>
+
+        <!-- Población Beneficiaria -->
+        <h3 class="text-base font-bold text-slate-900 mb-3">Población Beneficiaria</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h4 class="font-bold text-slate-900 mb-1">1. Ciudadanía y Peatones</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">Habitantes y transeúntes de las zonas urbanas que se benefician de entornos nocturnos más seguros, reduciendo puntos oscuros y riesgos de accidentalidad vial.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h4 class="font-bold text-slate-900 mb-1">2. Operadores y Entes Municipales</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">Cuadrillas técnicas, supervisores de mantenimiento y alcaldías (como el municipio de Chía), quienes obtienen trazabilidad por poste para programar mantenimientos preventivos y optimizar presupuesto.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h4 class="font-bold text-slate-900 mb-1">3. Medio Ambiente y Ecosistema Urbano</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">Reducción del desperdicio eléctrico y de la huella de carbono asociada a luminarias encendidas fuera de horario o operando con fallas de eficiencia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. OBJETIVOS -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+        <div class="flex items-center gap-3 mb-6">
+            <span class="bg-rose-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">04</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Objetivos del Proyecto</h2>
+        </div>
+
+        <div class="bg-slate-50 border-l-4 border-rose-700 p-5 rounded-r-xl mb-6">
+            <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Objetivo General</span>
+            <p class="text-slate-800 font-medium text-sm sm:text-base mt-1 leading-relaxed">
+                Construir una plataforma de datos que integre las mediciones del alumbrado público inteligente, las limpie y homologue mediante un proceso ETL en SSIS, y las almacene en un Data Warehouse bajo modelo estrella para analizar el consumo energético, las fallas y los eventos operativos de la red.
+            </p>
+        </div>
+
+        <h3 class="text-base font-bold text-slate-900 mb-3">Objetivos Específicos</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <span class="bg-rose-100 text-rose-800 font-bold text-xs px-2 py-0.5 rounded mt-0.5">OE1</span>
+                <p class="text-slate-700">Diseñar un modelo relacional normalizado (alumbrado) que gestione roles, usuarios, procesos, zonas, dispositivos, mediciones y eventos operativos.</p>
+            </div>
+            <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <span class="bg-rose-100 text-rose-800 font-bold text-xs px-2 py-0.5 rounded mt-0.5">OE2</span>
+                <p class="text-slate-700">Simular al menos 1.000.000 de mediciones (1.050.000 lecturas cada 5 minutos para 100 postes) incorporando errores controlados de calidad para validar el pipeline.</p>
+            </div>
+            <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <span class="bg-rose-100 text-rose-800 font-bold text-xs px-2 py-0.5 rounded mt-0.5">OE3</span>
+                <p class="text-slate-700">Diseñar e implementar un Data Warehouse (alumbradoDW) bajo esquema estrella con granularidad atómica de 5 minutos por poste y medición.</p>
+            </div>
+            <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <span class="bg-rose-100 text-rose-800 font-bold text-xs px-2 py-0.5 rounded mt-0.5">OE4</span>
+                <p class="text-slate-700">Implementar un flujo ETL automatizado en SQL Server Integration Services (SSIS) que limpie, homologue estados, audite rechazos y cargue datos sin duplicados.</p>
+            </div>
+            <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200/80 md:col-span-2">
+                <span class="bg-rose-100 text-rose-800 font-bold text-xs px-2 py-0.5 rounded mt-0.5">OE5</span>
+                <p class="text-slate-700">Responder preguntas clave de negocio mediante consultas analíticas SQL y tableros interactivos para generar conocimientos evidentes y decisiones sustentadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. MARCO REFERENCIAL Y ANTECEDENTES -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+        <div class="flex items-center gap-3 mb-6">
+            <span class="bg-rose-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">05</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Marco Referencial y Antecedentes</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Antecedente Interno · Versión Inicial (V1)</span>
+                <h3 class="font-bold text-slate-900 text-base">Prototipo Preliminar en Python y SQL Staging</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Como base previa a esta entrega, el equipo desarrolló una primera versión utilizando el script generar.py en PyCharm para simular 1.000.000 de lecturas cargadas en la tabla de paso stg_lectura (conservada en la base alumbrado junto a poste y registro_alumbrado).
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                    En aquella fase se depuraron mediante scripts SQL 971.258 filas limpias (descartando 28.742) para alimentar una primera versión del DW (esquema dbo) y un tablero inicial en Power BI. Esta experiencia motivó la evolución hacia el modelo relacional actual de 9 tablas y un ETL profesional en SSIS.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Fundamentos Técnicos y Normativos</span>
+                <h3 class="font-bold text-slate-900 text-base">Arquitectura IoT, Data Warehousing y Sostenibilidad</h3>
+                <ul class="space-y-2 text-slate-600 text-xs sm:text-sm list-disc list-inside leading-relaxed">
+                    <li>Modelado Dimensional (Kimball): Diseño de esquema estrella (fact_alumbrado y dimensiones conformadas) para optimizar consultas OLAP sobre millones de registros.</li>
+                    <li>Metodología CRISP-DM: Estándar de industria aplicado para estructurar el ciclo desde la comprensión del negocio urbano hasta el despliegue analítico.</li>
+                    <li>Naciones Unidas (2015) – Agenda 2030: Marco de referencia de los Objetivos de Desarrollo Sostenible ODS 7 y ODS 11 para infraestructura energética eficiente.</li>
+                    <li>Sistemas Embebidos IoT (Espressif ESP32-S3): Arquitectura de nodos de bajo consumo para telemetría de voltaje (V), potencia nominal (40 W) y control horario.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. METODOLOGÍA CRISP-DM Y CRONOGRAMA -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+        <div class="flex items-center gap-3 mb-2">
+            <span class="bg-rose-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">06</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Metodología CRISP-DM y Cronograma de Desarrollo</h2>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+            El desarrollo del Proyecto de Gestión del Conocimiento se ejecutó siguiendo las seis fases de la metodología CRISP-DM (Cross-Industry Standard Process for Data Mining), articulando la construcción física de la maqueta con el ciclo de vida de ingeniería de datos a partir del 17 de octubre de 2026 hasta la entrega final el 13 de noviembre de 2026.
+        </p>
+
+        <div class="overflow-x-auto border border-slate-200 rounded-xl">
+            <table class="min-w-full divide-y divide-slate-200 text-sm">
+                <thead class="bg-slate-50 text-slate-700">
+                    <tr>
+                        <th class="px-4 py-3 text-left font-bold">Etapa CRISP-DM</th>
+                        <th class="px-4 py-3 text-left font-bold">Período</th>
+                        <th class="px-4 py-3 text-left font-bold">Actividades Ejecutadas</th>
+                        <th class="px-4 py-3 text-left font-bold">Evidencias y Entregables</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 bg-white text-xs sm:text-sm">
+                    <tr>
+                        <td class="px-4 py-3.5 font-semibold text-rose-800 whitespace-nowrap">1. Comprensión del Negocio</td>
+                        <td class="px-4 py-3.5 text-slate-500 whitespace-nowrap">17 Oct – 22 Oct 2026</td>
+                        <td class="px-4 py-3.5 text-slate-600">Definición del módulo de Alumbrado Público, identificación de problemas energéticos, alineación con ODS 7 y ODS 11, y definición de reglas de negocio.</td>
+                        <td class="px-4 py-3.5 text-slate-700">Ficha del PGC, objetivos, reglas de eventos (Falla, Sobreconsumo >48 W, Bajo voltaje <105 V).</td>
+                    </tr>
+                    <tr class="bg-slate-50/50">
+                        <td class="px-4 py-3.5 font-semibold text-rose-800 whitespace-nowrap">2. Comprensión de los Datos</td>
+                        <td class="px-4 py-3.5 text-slate-500 whitespace-nowrap">23 Oct – 28 Oct 2026</td>
+                        <td class="px-4 py-3.5 text-slate-600">Montaje del prototipo físico con ESP32-S3 y 6 LEDs. Diseño del MER operacional (9 tablas en BD alumbrado) y simulación SQL de 1.050.000 mediciones.</td>
+                        <td class="px-4 py-3.5 text-slate-700">Prototipo físico funcional, diagrama MER, diccionario de datos, auditoría de anomalías.</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3.5 font-semibold text-rose-800 whitespace-nowrap">3. Preparación de los Datos</td>
+                        <td class="px-4 py-3.5 text-slate-500 whitespace-nowrap">29 Oct – 05 Nov 2026</td>
+                        <td class="px-4 py-3.5 text-slate-600">Construcción del Data Warehouse alumbradoDW (esquema estrella) y desarrollo del paquete ETL CargaAlumbradoDW.dtsx en SSIS con limpieza y homologación.</td>
+                        <td class="px-4 py-3.5 text-slate-700">1.043.772 filas válidas cargadas (99,41 %), 6.228 rechazos auditados en dw.rechazo_medicion.</td>
+                    </tr>
+                    <tr class="bg-slate-50/50">
+                        <td class="px-4 py-3.5 font-semibold text-rose-800 whitespace-nowrap">4. Modelado Analítico</td>
+                        <td class="px-4 py-3.5 text-slate-500 whitespace-nowrap">06 Nov – 09 Nov 2026</td>
+                        <td class="px-4 py-3.5 text-slate-600">Diseño del modelo multidimensional en Power BI y formulación de consultas analíticas SQL sobre consumo por zona, ranking de fallas y consumo horario.</td>
+                        <td class="px-4 py-3.5 text-slate-700">Modelo estrella en Power BI, consultas SQL validadas (1.727,10 kWh totales).</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3.5 font-semibold text-rose-800 whitespace-nowrap">5. Evaluación</td>
+                        <td class="px-4 py-3.5 text-slate-500 whitespace-nowrap">10 Nov – 12 Nov 2026</td>
+                        <td class="px-4 py-3.5 text-slate-600">Verificación de integridad referencial (0 registros huérfanos), pruebas de doble ejecución del ETL sin duplicados, y extracción de conocimientos evidentes.</td>
+                        <td class="px-4 py-3.5 text-slate-700">Informe técnico validado, hallazgo crítico en poste P030 (42 fallas en Zona Centro).</td>
+                    </tr>
+                    <tr class="bg-slate-50/50">
+                        <td class="px-4 py-3.5 font-semibold text-rose-800 whitespace-nowrap">6. Despliegue</td>
+                        <td class="px-4 py-3.5 text-slate-500 whitespace-nowrap">13 Nov 2026</td>
+                        <td class="px-4 py-3.5 text-slate-600">Desarrollo de aplicación web multi-página en Python (Flask), integración del panel de monitoreo en vivo de los 6 LEDs, dashboard interactivo y entrega final.</td>
+                        <td class="px-4 py-3.5 text-slate-700">Sitio web en producción, demostración en vivo de nodos físicos y sustentación final del PGC.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

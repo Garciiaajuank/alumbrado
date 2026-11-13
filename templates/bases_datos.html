@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block title %}MER · Modelo Entidad-Relación{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+
+    <!-- ENCABEZADO -->
+    <section>
+        <span class="inline-block bg-rose-100 text-rose-800 text-xs font-bold px-3 py-2 rounded-full">
+            GESTIÓN DE DATOS · CAPA OPERACIONAL (OLTP)
+        </span>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mt-4">
+            Modelo Entidad-Relación y simulación de datos
+        </h1>
+
+        <p class="text-slate-500 mt-3 max-w-3xl">
+            Estructura transaccional del modelo relacional, diagrama oficial del MER y descripción del proceso masivo de simulación de telemetría para la red de alumbrado público.
+        </p>
+    </section>
+
+    <!-- FOTO DEL MODELO RELACIONAL (MER) -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">
+            Diagrama del Modelo Entidad-Relación (MER)
+        </h2>
+        <p class="text-sm text-slate-500 mb-6">
+            Esquema relacional de la base de datos operacional denominada alumbrado, estructurada para garantizar la integridad referencial entre usuarios, topología y telemetría.
+        </p>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center">
+            <img
+                src="{{ url_for('static', filename='img/mer_alumbrado.png') }}"
+                alt="Modelo Entidad-Relación de la base de datos operacional"
+                class="w-full max-w-4xl h-auto object-contain rounded-lg border border-slate-200 bg-white p-2"
+            >
+            <p class="text-xs text-slate-400 text-center mt-3">
+                Diagrama relacional oficial de las 9 tablas que conforman el núcleo transaccional del proyecto.
+            </p>
+        </div>
+    </section>
+
+    <!-- EXPLICACIÓN DE CADA UNA DE LAS 9 TABLAS -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">
+            Diccionario y descripción de tablas operacionales
+        </h2>
+        <p class="text-sm text-slate-500 mb-6">
+            Detalle del propósito que cumple cada una de las nueve tablas dentro del modelo relacional transaccional.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Tabla 1</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">rol</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Almacena los perfiles de autorización y permisos asignados a los operadores y administradores dentro del sistema web.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Tabla 2</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">usuario</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Gestiona la información de credenciales y datos personales del personal técnico encargado de supervisar la plataforma.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Tabla 3</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">proceso</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Define los módulos y procesos del sistema a los cuales los usuarios pueden tener acceso según su rol operativo.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Tabla 4</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">usuario_proceso</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Tabla asociativa que vincula de forma granular los permisos específicos que posee cada usuario sobre los procesos del sistema.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Tabla 5</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">zona</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Agrupa geográficamente la infraestructura urbana en cinco sectores (Centro, Norte, Sur, Oriente y Occidente).
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Tabla 6</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">dispositivo</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Almacena el inventario físico de los 100 postes registrados (P001 a P00100), asociando su zona y potencia nominal de 40 W.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Tabla 7</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">medicion</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Contiene el registro masivo de telemetría operativa, capturando voltajes, corrientes y estados de iluminación cada 5 minutos.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Tabla 8</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">tipo_evento</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Clasifica la naturaleza de las alertas e incidencias detectadas en la red (fallas eléctricas, sobreconsumos o bajo voltaje).
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Tabla 9</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-2 mb-1">evento</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Registra las ocurrencias operativas asociadas a los postes cuando se detecta un comportamiento anómalo en la red.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DESCRIPCIÓN DE LA SIMULACIÓN DEL MILLÓN DE REGISTROS -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">
+            Descripción de la simulación del millón de mediciones
+        </h2>
+        <p class="text-sm text-slate-500 mb-6">
+            Metodología aplicada para generar el volumen masivo de datos transaccionales con fines analíticos y de prueba.
+        </p>
+
+        <div class="space-y-4">
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">1</div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-sm">Dimensión espacial y temporal</h3>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Se configuró un generador automatizado para simular el comportamiento de 100 postes urbanos distribuidos (P001 a P00100), recolectando telemetría de manera continua cada 5 minutos hasta completar 1.050.000 registros crudos.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">2</div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-sm">Variables operativas inyectadas</h3>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Cada fila generada incluye parámetros como voltaje nominal de red, potencia activa asociada a los 40 W estándar, y el estado operativo condicionado estrictamente al horario nocturno (18:00 a 06:00 horas).</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">3</div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-sm">Inyección controlada de anomalías de calidad</h3>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Para poner a prueba el proceso ETL posterior, se introdujeron deliberadamente variaciones tipográficas, valores nulos, registros fuera de franja horaria y códigos centinela (9999), simulando imperfecciones reales de los sensores IoT.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

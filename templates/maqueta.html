@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+{% block title %}Maqueta física{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+
+    <!-- ENCABEZADO -->
+    <section>
+        <span class="inline-block bg-rose-100 text-rose-800 text-xs font-bold px-3 py-2 rounded-full">
+            PROTOTIPO FÍSICO · ARQUITECTURA IoT
+        </span>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mt-4">
+            Maqueta de alumbrado inteligente
+        </h1>
+
+        <p class="text-slate-500 mt-3 max-w-3xl">
+            Representación física de un sistema de alumbrado público basado en ESP32-S3, encargado de controlar seis puntos de iluminación mediante un horario nocturno programado y su posterior escalamiento a una red urbana.
+        </p>
+    </section>
+
+    <!-- FOTO Y DESARROLLO DE LA SOLUCIÓN -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex flex-col justify-between">
+            <img
+                src="{{ url_for('static', filename='img/maqueta_alumbrado.png') }}"
+                alt="Maqueta física de alumbrado público inteligente"
+                class="w-full h-80 object-cover rounded-xl"
+            >
+
+            <p class="text-xs text-slate-400 text-center mt-3">
+                Prototipo físico del sistema de alumbrado público con placa ESP32-S3 y nodos LED.
+            </p>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+
+            <h2 class="text-xl font-bold text-slate-900 mb-4">
+                Desarrollo de la solución
+            </h2>
+
+            <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                La maqueta integra un microcontrolador ESP32-S3 que controla seis LEDs para representar los postes iniciales de alumbrado público. El sistema automatiza el encendido y apagado de las luminarias según un horario establecido entre las 18:00 y las 06:00 horas, sirviendo de base física para simular una red escalada de 100 postes.
+            </p>
+
+            <div class="space-y-4">
+
+                <div class="flex gap-3">
+                    <div class="bg-rose-100 text-rose-700 rounded-xl p-3 h-fit font-bold">
+                        01
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800">Módulo</h3>
+                        <p class="text-sm text-slate-500">
+                            Sistema de control inteligente del alumbrado público urbano para la gestión energética y detección de anomalías.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <div class="bg-rose-100 text-rose-700 rounded-xl p-3 h-fit font-bold">
+                        02
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800">Procesos</h3>
+                        <p class="text-sm text-slate-500">
+                            Control horario automático, activación de luminarias, registro de telemetría, extracción ETL y modelado dimensional.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <div class="bg-rose-100 text-rose-700 rounded-xl p-3 h-fit font-bold">
+                        03
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800">Dispositivos</h3>
+                        <p class="text-sm text-slate-500">
+                            Placa ESP32-S3, seis LEDs indicadores, resistencias, protoboard, cableado estructurado y servidores de base de datos.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <div class="bg-rose-100 text-rose-700 rounded-xl p-3 h-fit font-bold">
+                        04
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800">Funcionalidades</h3>
+                        <p class="text-sm text-slate-500">
+                            Encendido nocturno sincronizado, simulación de fallas en nodos y centralización de datos operativos para análisis.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ARQUITECTURA DEL SISTEMA Y CONEXIÓN DE NODOS -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
+            <div>
+                <h2 class="text-xl font-bold text-slate-900">
+                    Arquitectura del sistema y conexión de nodos
+                </h2>
+                <p class="text-sm text-slate-500 mt-1">
+                    Estructura general de la maqueta y su conexión con los seis nodos principales.
+                </p>
+            </div>
+            <span class="bg-rose-100 text-rose-700 text-xs font-bold px-3 py-2 rounded-full">
+                HARDWARE & NODOS
+            </span>
+        </div>
+
+        <!-- Tarjeta esquema visual superior -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 mb-6 flex flex-col items-center justify-center relative overflow-hidden">
+            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-12 my-2 w-full">
+                <!-- Bloque ESP32-S3 -->
+                <div class="bg-rose-900 text-white rounded-2xl p-4 shadow-md flex flex-col items-center min-w-[120px]">
+                    <div class="text-2xl mb-1">🎛️</div>
+                    <span class="font-bold text-sm">ESP32-S3</span>
+                    <span class="text-[10px] text-rose-200">Controlador IoT</span>
+                </div>
+
+                <!-- Línea de conexión -->
+                <div class="hidden sm:flex items-center">
+                    <div class="h-1 w-20 bg-rose-600 rounded"></div>
+                    <div class="w-3 h-3 bg-rose-600 rotate-45 -ml-1.5"></div>
+                </div>
+
+                <!-- Bloque de 6 LEDs / Postes -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex items-center gap-3">
+                    {% for i in range(1, 7) %}
+                    <div class="flex flex-col items-center">
+                        <div class="w-7 h-9 bg-slate-200 rounded-t-lg relative flex items-center justify-center mb-1 shadow-inner">
+                            <div class="w-3 h-3 rounded-full bg-yellow-400 shadow-[0_0_8px_#facc15]"></div>
+                        </div>
+                        <span class="text-[10px] font-mono font-bold text-slate-700">P00{{ i }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <p class="text-xs text-slate-400 mt-4 text-center">Esquema físico de conexión: El microcontrolador gobierna la línea de distribución de los 6 nodos lumínicos (P001 a P006).</p>
+        </div>
+
+        <!-- Paso a paso detallado del funcionamiento -->
+        <div class="space-y-3">
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">1</div>
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm">Configuración del microcontrolador</h4>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">El ESP32-S3 inicializa sus pines GPIO como salidas digitales para controlar de forma individualizada o en bus los seis nodos de la maqueta física.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">2</div>
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm">Evaluación del ciclo horario nocturno</h4>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">El sistema interno valida el cumplimiento de la franja horaria establecida (18:00 a 06:00 horas) para ordenar el encendido de las luminarias.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">3</div>
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm">Activación de los nodos lumínicos</h4>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Los seis LEDs (P001 a P006) reciben alimentación y se encienden, simulando el comportamiento operativo de los postes en la zona urbana.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="bg-rose-100 text-rose-800 font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">4</div>
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm">Monitoreo y simulación de anomalías</h4>
+                    <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Se pueden simular eventos críticos como caídas de voltaje o fallas eléctricas en nodos específicos para probar la respuesta del sistema.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- USUARIOS Y PROCESOS -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
+            <div>
+                <h2 class="text-xl font-bold text-slate-900">
+                    Usuarios y procesos
+                </h2>
+                <p class="text-sm text-slate-500 mt-1">
+                    Quién usa cada parte de la solución dentro del ecosistema del proyecto.
+                </p>
+            </div>
+            <span class="bg-rose-100 text-rose-700 text-xs font-bold px-3 py-2 rounded-full">
+                ROLES Y ACTORES
+            </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                <h3 class="font-bold text-slate-800 text-sm mb-2">Ciudadanía y peatones</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Beneficiarios directos del sistema de iluminación urbana, experimentando vías y espacios públicos más seguros durante los horarios nocturnos.
+                </p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                <h3 class="font-bold text-slate-800 text-sm mb-2">Operadores y entes municipales</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Supervisan la plataforma web, revisan el estado en vivo de los nodos físicos y programan mantenimientos preventivos ante reportes de fallas.
+                </p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                <h3 class="font-bold text-slate-800 text-sm mb-2">Equipo de desarrollo y datos</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Diseñan el hardware con el ESP32-S3, configuran las bases de datos operacionales, ejecutan los paquetes ETL en SSIS y actualizan el modelo en Power BI.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARQUITECTURA GENERAL DEL FLUJO -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+
+        <h2 class="text-xl font-bold text-slate-900">
+            Flujo de arquitectura general
+        </h2>
+
+        <p class="text-sm text-slate-500 mt-2 mb-6">
+            Flujo de información desde el dispositivo físico hasta la visualización y análisis de los datos.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+
+            {% for nombre, descripcion in [
+                ('ESP32-S3', 'Controlador del prototipo IoT y nodos físicos'),
+                ('Base de datos', 'Almacenamiento de 1.05M de mediciones operacionales'),
+                ('ETL - SSIS', 'Extracción, homologación y limpieza de datos'),
+                ('Data Warehouse', 'Modelo dimensional en esquema estrella'),
+                ('Dashboard', 'Visualización de indicadores y analítica')
+            ] %}
+
+            <div class="bg-rose-50 border border-rose-100 rounded-xl p-5 text-center">
+                <div class="text-2xl text-rose-700 mb-3">◆</div>
+                <h3 class="font-bold text-slate-800 text-sm">
+                    {{ nombre }}
+                </h3>
+                <p class="text-xs text-slate-500 mt-2">
+                    {{ descripcion }}
+                </p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <!-- TECNOLOGÍAS UTILIZADAS Y SU PROPÓSITO -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+
+        <h2 class="text-xl font-bold text-slate-900 mb-2">
+            Tecnologías utilizadas y propósito
+        </h2>
+        <p class="text-sm text-slate-500 mb-6">
+            Descripción del rol específico que cumplió cada tecnología dentro del desarrollo del proyecto.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <h3 class="font-bold text-slate-800 text-sm mb-1">ESP32-S3</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Microcontrolador principal utilizado para el prototipo físico y la gestión de los seis nodos LED simulados.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <h3 class="font-bold text-slate-800 text-sm mb-1">Python</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Lenguaje utilizado para estructurar el backend y la lógica de control del servidor web.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <h3 class="font-bold text-slate-800 text-sm mb-1">Flask</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Framework web en Python para renderizar las páginas y gestionar las rutas de la plataforma multi-página.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <h3 class="font-bold text-slate-800 text-sm mb-1">SQL Server</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Motor relacional para almacenar tanto la base operacional como el Data Warehouse en modelo estrella.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <h3 class="font-bold text-slate-800 text-sm mb-1">SSIS</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Herramienta de integración para ejecutar el proceso ETL de limpieza, homologación y carga masiva de datos.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <h3 class="font-bold text-slate-800 text-sm mb-1">HTML</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Lenguaje de marcado estándar utilizado para estructurar las plantillas web de todo el sitio.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <h3 class="font-bold text-slate-800 text-sm mb-1">Tailwind CSS</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Framework de estilos CSS para lograr una interfaz limpia, moderna, responsive y profesional.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <h3 class="font-bold text-slate-800 text-sm mb-1">JavaScript</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Lenguaje de programación para habilitar la interactividad dinámica dentro de las vistas de usuario.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+{% endblock %}
