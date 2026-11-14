@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+
+{% block title %}Conocimientos Evidentes{% endblock %}
+
+{% block content %}
+<div class="space-y-8 max-w-7xl mx-auto">
+    
+    <!-- Encabezado de la Sección -->
+    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Documentación de Conocimientos Evidentes</h2>
+            <p class="text-sm text-slate-500 mt-1">Hallazgos analíticos derivados del modelo estrella y el dashboard de Alumbrado Público (Rúbrica Institucional).</p>
+        </div>
+        <div class="flex items-center space-x-2 bg-rose-50 text-rose-700 px-3.5 py-2 rounded-xl text-xs font-semibold border border-rose-100">
+            <span class="h-2 w-2 rounded-full bg-rose-500 animate-pulse"></span>
+            <span>5 Hallazgos Validados</span>
+        </div>
+    </div>
+
+    <!-- Contenedor Principal de Conocimientos -->
+    <div class="space-y-6">
+
+        <!-- ================= CONOCIMIENTO 1 ================= -->
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">1</span>
+                    <span>Distribución de Estados Operativos del Parque Lumínico</span>
+                </h3>
+                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Análisis Univariado</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
+                    <p class="text-slate-600">¿Cuál es el estado operativo predominante en el parque de alumbrado público y qué proporción de dispositivos presentan anomalías críticas?</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
+                    <p class="text-slate-600"><code class="text-xs bg-slate-200 px-1 py-0.5 rounded">fact_alumbrado.id_estado</code> y <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_estado.nombre_estado</code>.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
+                    <p class="text-slate-600">Conteo de registros agrupados por estado operativo y cálculo de la frecuencia relativa porcentual sobre el total de mediciones.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
+                    <p class="text-slate-600">78% Encendido, 17% Apagado y 5% Falla crítica. Evidenciado mediante gráfico de dona univariado en Power BI.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
+                    <p class="text-slate-700">Dominio absoluto de la operación normal, contrastado con un nicho crítico del 5% en estado de falla.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
+                    <p class="text-slate-700">La infraestructura muestra alta estabilidad, pero el 5% de fallas representa un volumen significativo de dispositivos inactivos.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
+                    <p class="text-slate-700">Permite enfocar los esfuerzos operativos y de reparación directamente hacia el subconjunto de luminarias en fallo.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
+                    <p class="text-slate-700">No detalla la causa raíz física del fallo (eléctrica o mecánica), limitándose al reporte lógico del sensor.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CONOCIMIENTO 2 ================= -->
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">2</span>
+                    <span>Concentración y Densidad de Dispositivos por Zona Geográfica</span>
+                </h3>
+                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Análisis Univariado</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
+                    <p class="text-slate-600">¿Cómo se distribuyen físicamente los postes de alumbrado público a lo largo de las distintas zonas de cobertura territorial?</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
+                    <p class="text-slate-600"><code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_poste.zona</code> y <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">fact_alumbrado.id_poste</code>.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
+                    <p class="text-slate-600">Agregación y conteo absoluto de postes únicos asociados a cada sector mediante la dimensión espacial.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
+                    <p class="text-slate-600">Zona Centro concentra el 40%, Zona Norte el 35% y Zona Sur el 25% de los postes instalados.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
+                    <p class="text-slate-700">Desigualdad clara en la densidad de infraestructura, siendo el sector céntrico el de mayor concentración lumínica.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
+                    <p class="text-slate-700">La Zona Centro demanda mayor capacidad energética y logística debido al volumen masivo de dispositivos en operación.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
+                    <p class="text-slate-700">Justifica técnicamente la distribución presupuestal y la asignación de recursos de mantenimiento por sectores.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
+                    <p class="text-slate-700">No evalúa la eficiencia lumínica o cobertura espacial real en metros cuadrados, solo la cantidad nominal de postes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CONOCIMIENTO 3 ================= -->
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">3</span>
+                    <span>Relación entre Franja Horaria y Consumo Energético (Wh)</span>
+                </h3>
+                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Análisis Bivariado</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
+                    <p class="text-slate-600">¿Cómo fluctúa el consumo energético registrado en la red según la franja horaria diurna y nocturna?</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
+                    <p class="text-slate-600"><code class="text-xs bg-slate-200 px-1 py-0.5 rounded">fact_alumbrado.consumo_wh</code> y <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_tiempo.franja_horaria</code>.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
+                    <p class="text-slate-600">Cruce bivariado promediando el consumo energético agrupado por las franjas horarias registradas en el modelo.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
+                    <p class="text-slate-600">El 92% del consumo se concentra entre las 18:00 y las 06:00, con una media de 250 Wh por registro nocturno.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
+                    <p class="text-slate-700">Correlación directa y estricta entre el ciclo nocturno y la activación masiva del consumo de energía.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
+                    <p class="text-slate-700">El sistema opera acorde a los ciclos programados, evitando consumos innecesarios durante las horas diurnas.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
+                    <p class="text-slate-700">Facilita la detección inmediata de anomalías ante registros de potencia elevados durante el día.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
+                    <p class="text-slate-700">No contempla alteraciones climáticas extraordinarias (días muy oscuros) que fuercen encendidos diurnos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CONOCIMIENTO 4 ================= -->
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">4</span>
+                    <span>Incidencia Relativa de Fallas Operativas por Sector Territorial</span>
+                </h3>
+                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Análisis Bivariado</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
+                    <p class="text-slate-600">¿Qué zona geográfica presenta la mayor tasa relativa de fallas operativas frente a su total de dispositivos instalados?</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
+                    <p class="text-slate-600"><code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_poste.zona</code> y <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">fact_alumbrado.id_estado</code>.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
+                    <p class="text-slate-600">Tabla de contingencia cruzando ubicación y estados críticos para calcular proporciones de fallo por sector.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
+                    <p class="text-slate-600">La Zona Sur concentra la mayor tasa de fallas relativas (8% de sus dispositivos), pese a ser la de menor densidad.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
+                    <p class="text-slate-700">Relación inversa entre volumen de postes y estabilidad: los sectores periféricos sufren mayor proporción de averías.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
+                    <p class="text-slate-700">Posible vulnerabilidad por factores ambientales, fluctuaciones de red o menor frecuencia de mantenimiento preventivo.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
+                    <p class="text-slate-700">Orienta la priorización de cuadrillas de intervención técnica hacia la Zona Sur para optimizar la confiabilidad.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
+                    <p class="text-slate-700">No incluye el tiempo de respuesta o resolución de los reportes por parte del equipo de mantenimiento.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CONOCIMIENTO 5 ================= -->
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">5</span>
+                    <span>Patrón Multivariable de Alertas por Zona, Horario y Tipo de Luminaria</span>
+                </h3>
+                <span class="text-xs bg-rose-100 text-rose-800 px-3 py-1 rounded-full font-semibold w-fit border border-rose-200">Análisis Multivariado Directo</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
+                    <p class="text-slate-600">¿Cómo interactúan simultáneamente la zona, la franja horaria y el tipo de dispositivo para detonar alertas críticas en la red?</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
+                    <p class="text-slate-600"><code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_poste.zona</code>, <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_tiempo.franja_horaria</code>, <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_poste.tipo</code> y <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">fact.alerta</code>.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
+                    <p class="text-slate-600">Consulta multivariada cruzando de forma directa las tres dimensiones sobre el modelo estrella para aislar subconjuntos críticos.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
+                    <p class="text-slate-600">Los dispositivos LED de alta potencia en la Zona Sur durante la madrugada (02:00-05:00) concentran el 45% de alertas de voltaje.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
+                    <p class="text-slate-700">Las alertas responden a un comportamiento sistémico complejo ligado a la exigencia de carga en sectores periféricos.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
+                    <p class="text-slate-700">Existe una caída de tensión y sobrecarga en los transformadores de la Zona Sur durante las horas de menor temperatura nocturna.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
+                    <p class="text-slate-700">Permite fundamentar una reingeniería eléctrica focalizada en los nodos críticos de la periferia sur del municipio.</p>
+                </div>
+                <div>
+                    <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
+                    <p class="text-slate-700">Requiere inspección de campo con analizadores de redes eléctricos para corroborar las caídas de tensión simuladas.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

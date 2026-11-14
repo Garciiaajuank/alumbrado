@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Alumbrado Público Inteligente</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-md">
+        <div class="flex items-center space-x-3">
+            <div class="h-3 w-3 bg-rose-500 rounded-full animate-pulse"></div>
+            <h1 class="text-xl font-bold tracking-tight text-white">SmartGuard 360 <span class="text-rose-500 font-light">| Alumbrado Inteligente</span></h1>
+        </div>
+        <div class="flex items-center space-x-4 text-sm text-slate-400">
+            <span class="bg-slate-800 px-3 py-1 rounded-full border border-slate-700">Red: <strong class="text-slate-200">juank</strong></span>
+            <span class="bg-emerald-950/60 text-emerald-400 border border-emerald-800/50 px-3 py-1 rounded-full">ESP32-S3 Conectado</span>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-1 p-6 max-w-7xl mx-auto w-full space-y-6">
+
+        <!-- KPI Cards Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+                <p class="text-sm font-medium text-slate-400">Postes Activos (Nodos)</p>
+                <p class="text-3xl font-semibold text-white mt-2">6 / 6</p>
+                <span class="text-xs text-emerald-400 mt-2 inline-block">100% Operativos</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+                <p class="text-sm font-medium text-slate-400">Consumo Energético Actual</p>
+                <p class="text-3xl font-semibold text-rose-500 mt-2">1.42 <span class="text-lg text-slate-400">kW</span></p>
+                <span class="text-xs text-slate-500 mt-2 inline-block">-8% vs. promedio histórico</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+                <p class="text-sm font-medium text-slate-400">Estado de la Red Wi-Fi</p>
+                <p class="text-3xl font-semibold text-white mt-2">Estable</p>
+                <span class="text-xs text-emerald-400 mt-2 inline-block">Latencia baja (&lt; 15ms)</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+                <p class="text-sm font-medium text-slate-400">Alertas y Fallas</p>
+                <p class="text-3xl font-semibold text-emerald-400 mt-2">0</p>
+                <span class="text-xs text-slate-500 mt-2 inline-block">Sin incidencias reportadas</span>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Line Chart: Consumo en Tiempo Real -->
+            <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm flex flex-col">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold text-white">Evolución Temporal del Consumo</h2>
+                    <span class="text-xs text-slate-400 bg-slate-800 px-2.5 py-1 rounded">DirectQuery / Simulado</span>
+                </div>
+                <div class="relative flex-1 w-full min-h-[280px]">
+                    <canvas id="consumoChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Doughnut Chart: Estado de Carga / Distribución -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm flex flex-col">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold text-white">Estado de Luminarias</h2>
+                </div>
+                <div class="relative flex-1 w-full min-h-[280px] flex items-center justify-center">
+                    <canvas id="estadoChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Section: 6 ESP32-S3 Nodes Status -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl shadow-sm overflow-hidden">
+            <div class="p-6 border-b border-slate-800 flex justify-between items-center">
+                <h2 class="text-lg font-semibold text-white">Monitoreo de Nodos Físicos (Pines ESP32-S3)</h2>
+                <span class="text-xs text-slate-400">Actualización en vivo</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-300">
+                    <thead class="bg-slate-950 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
+                        <tr>
+                            <th class="px-6 py-3">Nodo / ID</th>
+                            <th class="px-6 py-3">Pin GPIO</th>
+                            <th class="px-6 py-3">Ubicación Simulada</th>
+                            <th class="px-6 py-3">Estado Físico</th>
+                            <th class="px-6 py-3">Último Reporte</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800">
+                        <tr class="hover:bg-slate-800/50 transition-colors">
+                            <td class="px-6 py-4 font-medium text-white">Poste #1</td>
+                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 4</td>
+                            <td class="px-6 py-4 text-slate-400">Bloque A - Universidad</td>
+                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
+                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50 transition-colors">
+                            <td class="px-6 py-4 font-medium text-white">Poste #2</td>
+                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 5</td>
+                            <td class="px-6 py-4 text-slate-400">Bloque A - Universidad</td>
+                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
+                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50 transition-colors">
+                            <td class="px-6 py-4 font-medium text-white">Poste #3</td>
+                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 6</td>
+                            <td class="px-6 py-4 text-slate-400">Bloque B - Sendero</td>
+                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
+                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50 transition-colors">
+                            <td class="px-6 py-4 font-medium text-white">Poste #4</td>
+                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 7</td>
+                            <td class="px-6 py-4 text-slate-400">Bloque B - Sendero</td>
+                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
+                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50 transition-colors">
+                            <td class="px-6 py-4 font-medium text-white">Poste #5</td>
+                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 15</td>
+                            <td class="px-6 py-4 text-slate-400">Zona Deportiva</td>
+                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
+                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50 transition-colors">
+                            <td class="px-6 py-4 font-medium text-white">Poste #6</td>
+                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 16</td>
+                            <td class="px-6 py-4 text-slate-400">Zona Deportiva</td>
+                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
+                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-4 text-center text-xs text-slate-500 mt-8">
+        Universidad de Cundinamarca - Ingeniería de Sistemas y Computación (Séptimo Semestre)
+    </footer>
+
+    <!-- Chart Configuration Script -->
+    <script>
+        // Line Chart Config
+        const ctxConsumo = document.getElementById('consumoChart').getContext('2d');
+        new Chart(ctxConsumo, {
+            type: 'line',
+            data: {
+                labels: ['18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+                datasets: [{
+                    label: 'Consumo (kW)',
+                    data: [0.8, 1.2, 1.5, 1.4, 1.42, 1.35],
+                    borderColor: '#f43f5e',
+                    backgroundColor: 'rgba(244, 63, 94, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { grid: { color: '#1e293b' }, ticks: { color: '#64748b' } },
+                    y: { grid: { color: '#1e293b' }, ticks: { color: '#64748b' } }
+                }
+            }
+        });
+
+        // Doughnut Chart Config
+        const ctxEstado = document.getElementById('estadoChart').getContext('2d');
+        new Chart(ctxEstado, {
+            type: 'doughnut',
+            data: {
+                labels: ['Operativos', 'En Mantenimiento', 'Fallas'],
+                datasets: [{
+                    data: [6, 0, 0],
+                    backgroundColor: ['#10b981', '#f59e0b', '#f43f5e'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#94a3b8', boxWidth: 12 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard y Análisis Exploratorio{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+    
+    <!-- Encabezado de la sección -->
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Panel de Control & Análisis Exploratorio</h2>
+            <p class="text-sm text-slate-500 mt-1">Modelo estrella de Alumbrado Público · Cumplimiento de rúbrica analítica y visualización en tiempo real.</p>
+        </div>
+        <div class="flex items-center space-x-2 bg-rose-50 text-rose-700 px-3 py-1.5 rounded-lg text-xs font-semibold border border-rose-100">
+            <span class="h-2 w-2 rounded-full bg-rose-500 animate-pulse"></span>
+            <span>Power BI Service (Conectado)</span>
+        </div>
+    </div>
+
+    <!-- Contenedor del Power BI Iframe -->
+    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+        <div class="w-full h-[75vh] min-h-[600px] rounded-xl overflow-hidden bg-slate-50 relative">
+            <iframe 
+                title="Alumrbado Publico" 
+                src="https://app.powerbi.com/view?r=eyJrIjoiZjU1ODBjZWQtNGRkNC00ODM3LWEzM2ItMzg5NWVlYTYyNDUxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9" 
+                class="w-full h-full border-0"
+                allowFullScreen="true">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Sección de Documentación de la Rúbrica Analítica -->
+    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div class="border-b border-slate-100 pb-4">
+            <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                <span class="w-2.5 h-6 bg-rose-600 rounded-full inline-block"></span>
+                <span>Especificaciones del Análisis Exploratorio (Rúbrica)</span>
+            </h3>
+            <p class="text-sm text-slate-500 mt-1">Detalle técnico de cómo el modelo de datos y el dashboard satisfacen los requerimientos evaluativos:</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- 1. Indicadores Generales -->
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-rose-200 transition">
+                <h4 class="text-rose-700 font-semibold text-base mb-3 flex items-center justify-between">
+                    <span>1. Cinco Indicadores Generales (KPIs)</span>
+                    <span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full">Modelo DW</span>
+                </h4>
+                <ul class="space-y-2 text-sm text-slate-600">
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Cantidad de Mediciones:</strong> Total de registros procesados en la tabla de hechos (`fact_alumbrado`).</div>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Dispositivos Activos:</strong> Conteo único de postes operativos en la dimensión de dispositivos.</div>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Consumo Energético Total:</strong> Suma acumulada de kilovatios-hora (Wh) medidos por el sistema.</div>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Porcentaje de Alertas / Fallas:</strong> Proporción porcentual de estados críticos frente al total de eventos.</div>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Promedio de Potencia Nominal:</strong> Media aritmética del consumo nominal por cada luminaria instalada.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 2. Análisis Univariados -->
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-rose-200 transition">
+                <h4 class="text-rose-700 font-semibold text-base mb-3 flex items-center justify-between">
+                    <span>2. Tres Análisis Univariados</span>
+                    <span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full">Estadística Descriptiva</span>
+                </h4>
+                <ul class="space-y-2 text-sm text-slate-600">
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Distribución por Estado:</strong> Gráfico de frecuencias (dona) evaluando el porcentaje de postes encendidos, apagados o en fallo.</div>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Distribución Temporal por Franja:</strong> Histograma de lecturas agrupadas por horas del día para identificar picos operativos.</div>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Conteo de Postes por Zona:</strong> Frecuencia absoluta de dispositivos distribuidos en cada sector geográfico.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 3. Análisis Bivariados -->
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-rose-200 transition">
+                <h4 class="text-rose-700 font-semibold text-base mb-3 flex items-center justify-between">
+                    <span>3. Tres Análisis Bivariados</span>
+                    <span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full">Relación de Variables</span>
+                </h4>
+                <ul class="space-y-2 text-sm text-slate-600">
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Lecturas por Zona y Estado:</strong> Cruce bivariado que examina qué sectores geográficos concentran mayor cantidad de fallas operativas.</div>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Consumo vs. Dispositivo:</strong> Relación entre la potencia nominal teórica y la energía real registrada en la tabla de hechos.</div>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Comportamiento por Franja y Estado:</strong> Identificación de anomalías comparando el horario nocturno frente al diurno.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 4. Análisis Multivariado -->
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-rose-200 transition">
+                <h4 class="text-rose-700 font-semibold text-base mb-3 flex items-center justify-between">
+                    <span>4. Análisis Multivariado Directo</span>
+                    <span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full">Modelo Estrella</span>
+                </h4>
+                <ul class="space-y-2 text-sm text-slate-600">
+                    <li class="flex items-start space-x-2">
+                        <span class="text-rose-500 font-bold">•</span>
+                        <div><strong>Matriz Cruzada Multivariable:</strong> Evaluación conjunta que integra simultáneamente <em>Ubicación (Zona)</em>, <em>Período (Fecha/Franja horaria)</em> y <em>Tipo de Dispositivo</em>. 
+                        <p class="text-xs text-slate-500 mt-1 italic">Calculado directamente sobre las relaciones del modelo estrella, permitiendo aislar comportamientos complejos sin descomponerlos en métricas aisladas.</p></div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
