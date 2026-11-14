@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% block title %}Productos y Resultados · Evidencias del PGC{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+
+    <!-- ENCABEZADO -->
+    <section>
+        <span class="inline-block bg-rose-100 text-rose-800 text-xs font-bold px-3 py-2 rounded-full">
+            EVALUACIÓN Y CIERRE · ENTREGABLES DEL PROYECTO
+        </span>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mt-4">
+            Productos y resultados alcanzados
+        </h1>
+
+        <p class="text-slate-500 mt-3 max-w-3xl">
+            Contrastación entre los entregables formulados en el alcance inicial del Proyecto de Gestión del Conocimiento, los productos técnicos consolidados y las evidencias verificables de operación.
+        </p>
+    </section>
+
+    <!-- PRODUCTOS ESPERADOS VS ALCANZADOS -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Productos Esperados -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">PLANIFICACIÓN</span>
+                <h2 class="text-xl font-bold text-slate-900">Productos esperados</h2>
+            </div>
+            <p class="text-xs text-slate-500 mb-5">
+                Entregables proyectados al inicio del semestre para dar respuesta a la problemática de gestión energética y mantenimiento del alumbrado público.
+            </p>
+            <ul class="space-y-3 text-sm text-slate-700">
+                <li class="flex items-start gap-2.5">
+                    <span class="text-slate-400 font-bold mt-0.5">•</span>
+                    <span><strong>Prototipo electrónico funcional (Maqueta IoT):</strong> Circuito a escala capaz de censar variables eléctricas, luminosidad ambiental y conmutar el estado de las luminarias.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-slate-400 font-bold mt-0.5">•</span>
+                    <span><strong>Modelo de datos transaccional (OLTP):</strong> Base de datos relacional normalizada en SQL Server para almacenar el inventario de postes, zonas y lecturas operativas.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-slate-400 font-bold mt-0.5">•</span>
+                    <span><strong>Almacén de datos y flujo ETL (OLAP):</strong> Esquema multidimensional estrella alimentado mediante un paquete automatizado de extracción, limpieza y carga en SSIS.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-slate-400 font-bold mt-0.5">•</span>
+                    <span><strong>Plataforma web de monitoreo y analítica:</strong> Aplicación centralizada desplegada en la nube para visualizar en tiempo real el comportamiento de la red y sus indicadores clave.</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Productos Alcanzados -->
+        <div class="bg-white border border-rose-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-1 rounded-lg">CUMPLIMIENTO 100%</span>
+                <h2 class="text-xl font-bold text-slate-900">Productos alcanzados</h2>
+            </div>
+            <p class="text-xs text-slate-500 mb-5">
+                Soluciones desarrolladas, integradas y validadas satisfactoriamente dentro del ecosistema tecnológico del proyecto.
+            </p>
+            <ul class="space-y-3 text-sm text-slate-700">
+                <li class="flex items-start gap-2.5">
+                    <span class="text-rose-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Maqueta física operativa:</strong> Implementación hardware con microcontrolador, sensores de corriente/voltaje, fotoresistencia LDR y relés de control automatizado.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-rose-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Base de datos operacional poblada:</strong> Estructura relacional en SQL Server con integridad referencial y generación masiva de 1.050.000 registros de telemetría simulada.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-rose-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Data Warehouse alumbradoDW y ETL en SSIS:</strong> Modelo estrella de 6 tablas (1 de hechos y 5 dimensiones) con flujo CargaAlumbradoDW.dtsx y tabla de auditoría de rechazos.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-rose-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Aplicación web en Python (Flask) en producción:</strong> Portal multi-vista responsivo estilizado con Tailwind CSS, versionado en GitHub y desplegado en Render.</span>
+                </li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- EVIDENCIAS VERIFICABLES DEL FUNCIONAMIENTO -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">
+            Evidencias verificables del funcionamiento
+        </h2>
+        <p class="text-sm text-slate-500 mb-6">
+            Indicadores cuantitativos y artefactos técnicos auditables que demuestran la operatividad integral del sistema desde la captura de datos hasta la visualización analítica.
+        </p>
+
+        <!-- Tarjetas de métricas auditables -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-semibold text-slate-400 uppercase">Volumen de Telemetría</span>
+                <div class="text-2xl font-bold text-slate-900 mt-1">1.050.000</div>
+                <p class="text-xs text-slate-500 mt-1">Registros generados en la capa operacional para 100 postes.</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-semibold text-rose-700 uppercase">Tasa de Calidad ETL</span>
+                <div class="text-2xl font-bold text-rose-700 mt-1">99.41%</div>
+                <p class="text-xs text-slate-500 mt-1">1.043.772 filas limpias cargadas en fact_alumbrado.</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-semibold text-amber-700 uppercase">Trazabilidad de Errores</span>
+                <div class="text-2xl font-bold text-amber-700 mt-1">6.228</div>
+                <p class="text-xs text-slate-500 mt-1">Anomalías aisladas en dw.rechazo_medicion sin detener el flujo.</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-semibold text-slate-400 uppercase">Disponibilidad Web</span>
+                <div class="text-2xl font-bold text-slate-900 mt-1">24/7 Cloud</div>
+                <p class="text-xs text-slate-500 mt-1">Despliegue continuo vía GitHub y servidor Gunicorn en Render.</p>
+            </div>
+        </div>
+
+        <!-- Tabla de trazabilidad de artefactos -->
+        <div class="overflow-x-auto border border-slate-200 rounded-xl">
+            <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                    <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-600">
+                        <th class="py-3.5 px-4 font-bold">Componente</th>
+                        <th class="py-3.5 px-4 font-bold">Artefacto / Entregable Técnico</th>
+                        <th class="py-3.5 px-4 font-bold">Mecanismo de Verificación</th>
+                        <th class="py-3.5 px-4 font-bold">Estado</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-slate-700">
+                    <tr>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">Hardware IoT</td>
+                        <td class="py-3.5 px-4">Maqueta física de alumbrado público</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">Pruebas de encendido automático por umbral de luz y lectura de consumo en vivo.</td>
+                        <td class="py-3.5 px-4"><span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Verificado</span></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">Base de Datos OLTP</td>
+                        <td class="py-3.5 px-4">Esquema relacional y script de poblamiento</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">Consultas T-SQL de conteo y validación de llaves foráneas en SQL Server Management Studio.</td>
+                        <td class="py-3.5 px-4"><span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Verificado</span></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">Integración ETL</td>
+                        <td class="py-3.5 px-4">Paquete CargaAlumbradoDW.dtsx (SSIS)</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">Ejecución exitosa en Visual Studio con recuento de filas válidas y tabla de rechazos.</td>
+                        <td class="py-3.5 px-4"><span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Verificado</span></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">Analítica y Web</td>
+                        <td class="py-3.5 px-4">Aplicación Flask + Repositorio GitHub</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">Navegación funcional en entorno productivo en Render con vistas de MER, DW y telemetría.</td>
+                        <td class="py-3.5 px-4"><span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Verificado</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+{% endblock %}
