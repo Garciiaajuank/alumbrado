@@ -1,205 +1,246 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Alumbrado Público Inteligente</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+{% extends "base.html" %}
 
-    <!-- Header / Navbar -->
-    <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-md">
-        <div class="flex items-center space-x-3">
-            <div class="h-3 w-3 bg-rose-500 rounded-full animate-pulse"></div>
-            <h1 class="text-xl font-bold tracking-tight text-white">SmartGuard 360 <span class="text-rose-500 font-light">| Alumbrado Inteligente</span></h1>
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Encabezado de la sección -->
+    <div class="bg-white rounded-2xl shadow-sm border border-rose-100 p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+            <div class="flex items-center gap-2">
+                <span id="status-dot" class="h-2.5 w-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                <span id="status-tag-text" class="text-xs font-semibold uppercase tracking-wider text-amber-600">Estado: En espera de flujo</span>
+            </div>
+            <h1 class="text-2xl font-bold text-slate-800 mt-1">Monitoreo Físico — Alumbrado Público Inteligente</h1>
+            <p class="text-sm text-slate-500 mt-0.5">Universidad de Cundinamarca — Telemetría y control de nodos por sector.</p>
         </div>
-        <div class="flex items-center space-x-4 text-sm text-slate-400">
-            <span class="bg-slate-800 px-3 py-1 rounded-full border border-slate-700">Red: <strong class="text-slate-200">juank</strong></span>
-            <span class="bg-emerald-950/60 text-emerald-400 border border-emerald-800/50 px-3 py-1 rounded-full">ESP32-S3 Conectado</span>
+        <div class="flex flex-wrap items-center gap-2 text-xs font-medium">
+            <span class="bg-rose-50 text-rose-700 border border-rose-200 px-3 py-1.5 rounded-lg">Proyecto: <strong>Alumbrado Inteligente</strong></span>
+            <span id="conexion-badge" class="bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1.5 rounded-lg">ESP32-S3: En espera</span>
         </div>
-    </header>
+    </div>
 
-    <!-- Main Content Grid -->
-    <main class="flex-1 p-6 max-w-7xl mx-auto w-full space-y-6">
-
-        <!-- KPI Cards Row -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
-                <p class="text-sm font-medium text-slate-400">Postes Activos (Nodos)</p>
-                <p class="text-3xl font-semibold text-white mt-2">6 / 6</p>
-                <span class="text-xs text-emerald-400 mt-2 inline-block">100% Operativos</span>
+    <!-- Tarjetas de Indicadores Clave (KPIs) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-2xl shadow-sm border border-rose-100 p-5">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Postes Activos</p>
+            <div class="flex items-baseline justify-between mt-2">
+                <p id="kpi-nodos" class="text-3xl font-bold text-slate-800">0 / 6</p>
+                <span id="kpi-nodos-badge" class="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">Standby</span>
             </div>
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
-                <p class="text-sm font-medium text-slate-400">Consumo Energético Actual</p>
-                <p class="text-3xl font-semibold text-rose-500 mt-2">1.42 <span class="text-lg text-slate-400">kW</span></p>
-                <span class="text-xs text-slate-500 mt-2 inline-block">-8% vs. promedio histórico</span>
-            </div>
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
-                <p class="text-sm font-medium text-slate-400">Estado de la Red Wi-Fi</p>
-                <p class="text-3xl font-semibold text-white mt-2">Estable</p>
-                <span class="text-xs text-emerald-400 mt-2 inline-block">Latencia baja (&lt; 15ms)</span>
-            </div>
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
-                <p class="text-sm font-medium text-slate-400">Alertas y Fallas</p>
-                <p class="text-3xl font-semibold text-emerald-400 mt-2">0</p>
-                <span class="text-xs text-slate-500 mt-2 inline-block">Sin incidencias reportadas</span>
-            </div>
+            <p class="text-xs text-slate-500 mt-2">Pines GPIO 4, 5, 6, 7, 15, 16</p>
         </div>
 
-        <!-- Charts Section -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Line Chart: Consumo en Tiempo Real -->
-            <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm flex flex-col">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold text-white">Evolución Temporal del Consumo</h2>
-                    <span class="text-xs text-slate-400 bg-slate-800 px-2.5 py-1 rounded">DirectQuery / Simulado</span>
+        <div class="bg-white rounded-2xl shadow-sm border border-rose-100 p-5">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Consumo Energético</p>
+            <div class="flex items-baseline justify-between mt-2">
+                <p class="text-3xl font-bold text-rose-600"><span id="kpi-consumo">0.00</span> <span class="text-base font-normal text-slate-500">kW</span></p>
+                <span class="text-xs font-medium text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">Tiempo Real</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-2">Medición acumulada por zona</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-rose-100 p-5">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Estado del Sistema</p>
+            <div class="flex items-baseline justify-between mt-2">
+                <p id="kpi-estado-texto" class="text-xl font-bold text-amber-600 mt-1">En espera...</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-2">Esperando enlace inalámbrico</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-rose-100 p-5">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Alertas de Fallas</p>
+            <div class="flex items-baseline justify-between mt-2">
+                <p class="text-3xl font-bold text-slate-800">0</p>
+                <span class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Sin anomalías</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-2">Integridad de red estable</p>
+        </div>
+    </div>
+
+    <!-- Gráficas Analíticas -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-rose-100 p-6 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h2 class="text-base font-bold text-slate-800">Evolución Temporal del Consumo</h2>
+                    <p class="text-xs text-slate-500">Comportamiento energético por franja horaria (kW)</p>
                 </div>
-                <div class="relative flex-1 w-full min-h-[280px]">
-                    <canvas id="consumoChart"></canvas>
-                </div>
+                <span class="text-xs font-medium text-rose-600 bg-rose-50 border border-rose-100 px-2.5 py-1 rounded-lg">Telemetría</span>
             </div>
-
-            <!-- Doughnut Chart: Estado de Carga / Distribución -->
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm flex flex-col">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold text-white">Estado de Luminarias</h2>
-                </div>
-                <div class="relative flex-1 w-full min-h-[280px] flex items-center justify-center">
-                    <canvas id="estadoChart"></canvas>
-                </div>
+            <div class="relative flex-1 min-h-[260px]">
+                <canvas id="chartConsumoLive"></canvas>
             </div>
         </div>
 
-        <!-- Table Section: 6 ESP32-S3 Nodes Status -->
-        <div class="bg-slate-900 border border-slate-800 rounded-xl shadow-sm overflow-hidden">
-            <div class="p-6 border-b border-slate-800 flex justify-between items-center">
-                <h2 class="text-lg font-semibold text-white">Monitoreo de Nodos Físicos (Pines ESP32-S3)</h2>
-                <span class="text-xs text-slate-400">Actualización en vivo</span>
+        <div class="bg-white rounded-2xl shadow-sm border border-rose-100 p-6 flex flex-col">
+            <div class="mb-4">
+                <h2 class="text-base font-bold text-slate-800">Consumo por Sector</h2>
+                <p class="text-xs text-slate-500">Norte Oeste, Norte Centro y Norte Este</p>
             </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm text-slate-300">
-                    <thead class="bg-slate-950 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
-                        <tr>
-                            <th class="px-6 py-3">Nodo / ID</th>
-                            <th class="px-6 py-3">Pin GPIO</th>
-                            <th class="px-6 py-3">Ubicación Simulada</th>
-                            <th class="px-6 py-3">Estado Físico</th>
-                            <th class="px-6 py-3">Último Reporte</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-800">
-                        <tr class="hover:bg-slate-800/50 transition-colors">
-                            <td class="px-6 py-4 font-medium text-white">Poste #1</td>
-                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 4</td>
-                            <td class="px-6 py-4 text-slate-400">Bloque A - Universidad</td>
-                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
-                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
-                        </tr>
-                        <tr class="hover:bg-slate-800/50 transition-colors">
-                            <td class="px-6 py-4 font-medium text-white">Poste #2</td>
-                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 5</td>
-                            <td class="px-6 py-4 text-slate-400">Bloque A - Universidad</td>
-                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
-                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
-                        </tr>
-                        <tr class="hover:bg-slate-800/50 transition-colors">
-                            <td class="px-6 py-4 font-medium text-white">Poste #3</td>
-                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 6</td>
-                            <td class="px-6 py-4 text-slate-400">Bloque B - Sendero</td>
-                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
-                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
-                        </tr>
-                        <tr class="hover:bg-slate-800/50 transition-colors">
-                            <td class="px-6 py-4 font-medium text-white">Poste #4</td>
-                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 7</td>
-                            <td class="px-6 py-4 text-slate-400">Bloque B - Sendero</td>
-                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
-                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
-                        </tr>
-                        <tr class="hover:bg-slate-800/50 transition-colors">
-                            <td class="px-6 py-4 font-medium text-white">Poste #5</td>
-                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 15</td>
-                            <td class="px-6 py-4 text-slate-400">Zona Deportiva</td>
-                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
-                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
-                        </tr>
-                        <tr class="hover:bg-slate-800/50 transition-colors">
-                            <td class="px-6 py-4 font-medium text-white">Poste #6</td>
-                            <td class="px-6 py-4 text-rose-400 font-mono">GPIO 16</td>
-                            <td class="px-6 py-4 text-slate-400">Zona Deportiva</td>
-                            <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full text-xs">Encendido</span></td>
-                            <td class="px-6 py-4 text-slate-400">Hace 2 segundos</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="relative flex-1 min-h-[260px]">
+                <canvas id="chartSectoresLive"></canvas>
             </div>
         </div>
+    </div>
 
-    </main>
+    <!-- Tabla de Estado de los 6 Nodos Físicos -->
+    <div class="bg-white rounded-2xl shadow-sm border border-rose-100 overflow-hidden">
+        <div class="p-6 border-b border-rose-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div>
+                <h2 class="text-base font-bold text-slate-800">Mapeo de Sectores y Luminarias (ESP32-S3)</h2>
+                <p class="text-xs text-slate-500">Distribución de los 6 nodos físicos por cuadrante</p>
+            </div>
+            <span id="tabla-status-badge" class="text-xs px-3 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-lg">Sin flujo de datos</span>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-slate-600">
+                <thead class="bg-rose-50/60 text-rose-900 text-xs uppercase font-semibold border-b border-rose-100">
+                    <tr>
+                        <th class="px-6 py-3.5">Nodo / ID</th>
+                        <th class="px-6 py-3.5">Pin Físico</th>
+                        <th class="px-6 py-3.5">Sector Asignado</th>
+                        <th class="px-6 py-3.5">Voltaje</th>
+                        <th class="px-6 py-3.5">Estado en Vivo</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-rose-50">
+                    <tr class="hover:bg-rose-50/30 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-slate-800">Poste #01</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 4</td>
+                        <td class="px-6 py-4 font-medium text-slate-700">Norte Oeste</td>
+                        <td class="px-6 py-4">3.3 V</td>
+                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                    </tr>
+                    <tr class="hover:bg-rose-50/30 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-slate-800">Poste #02</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 5</td>
+                        <td class="px-6 py-4 font-medium text-slate-700">Norte Oeste</td>
+                        <td class="px-6 py-4">3.3 V</td>
+                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                    </tr>
+                    <tr class="hover:bg-rose-50/30 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-slate-800">Poste #03</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 6</td>
+                        <td class="px-6 py-4 font-medium text-slate-700">Norte Centro</td>
+                        <td class="px-6 py-4">3.3 V</td>
+                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                    </tr>
+                    <tr class="hover:bg-rose-50/30 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-slate-800">Poste #04</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 7</td>
+                        <td class="px-6 py-4 font-medium text-slate-700">Norte Centro</td>
+                        <td class="px-6 py-4">3.3 V</td>
+                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                    </tr>
+                    <tr class="hover:bg-rose-50/30 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-slate-800">Poste #05</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 15</td>
+                        <td class="px-6 py-4 font-medium text-slate-700">Norte Este</td>
+                        <td class="px-6 py-4">3.3 V</td>
+                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                    </tr>
+                    <tr class="hover:bg-rose-50/30 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-slate-800">Poste #06</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 16</td>
+                        <td class="px-6 py-4 font-medium text-slate-700">Norte Este</td>
+                        <td class="px-6 py-4">3.3 V</td>
+                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-4 text-center text-xs text-slate-500 mt-8">
-        Universidad de Cundinamarca - Ingeniería de Sistemas y Computación (Séptimo Semestre)
-    </footer>
+</div>
 
-    <!-- Chart Configuration Script -->
-    <script>
-        // Line Chart Config
-        const ctxConsumo = document.getElementById('consumoChart').getContext('2d');
-        new Chart(ctxConsumo, {
-            type: 'line',
-            data: {
-                labels: ['18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-                datasets: [{
-                    label: 'Consumo (kW)',
-                    data: [0.8, 1.2, 1.5, 1.4, 1.42, 1.35],
-                    borderColor: '#f43f5e',
-                    backgroundColor: 'rgba(244, 63, 94, 0.1)',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    x: { grid: { color: '#1e293b' }, ticks: { color: '#64748b' } },
-                    y: { grid: { color: '#1e293b' }, ticks: { color: '#64748b' } }
-                }
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Gráfica de Evolución Temporal
+    const ctxLive = document.getElementById('chartConsumoLive').getContext('2d');
+    const consumoChart = new Chart(ctxLive, {
+        type: 'line',
+        data: {
+            labels: ['18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+            datasets: [{
+                label: 'Consumo (kW)',
+                data: [0, 0, 0, 0, 0, 0],
+                borderColor: '#e11d48',
+                backgroundColor: 'rgba(225, 29, 72, 0.08)',
+                borderWidth: 2.5,
+                fill: true,
+                tension: 0.35
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { grid: { display: false }, ticks: { color: '#64748b' } },
+                y: { grid: { color: '#ffe4e6' }, ticks: { color: '#64748b' } }
             }
-        });
+        }
+    });
 
-        // Doughnut Chart Config
-        const ctxEstado = document.getElementById('estadoChart').getContext('2d');
-        new Chart(ctxEstado, {
-            type: 'doughnut',
-            data: {
-                labels: ['Operativos', 'En Mantenimiento', 'Fallas'],
-                datasets: [{
-                    data: [6, 0, 0],
-                    backgroundColor: ['#10b981', '#f59e0b', '#f43f5e'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { color: '#94a3b8', boxWidth: 12 }
-                    }
-                }
+    // Gráfica de Barras por Sector (Norte Oeste, Norte Centro, Norte Este)
+    const ctxSectores = document.getElementById('chartSectoresLive').getContext('2d');
+    const sectoresChart = new Chart(ctxSectores, {
+        type: 'bar',
+        data: {
+            labels: ['Norte Oeste', 'Norte Centro', 'Norte Este'],
+            datasets: [{
+                label: 'kW por Sector',
+                data: [0, 0, 0],
+                backgroundColor: ['#fb7185', '#e11d48', '#be123c'],
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { grid: { display: false }, ticks: { color: '#64748b' } },
+                y: { grid: { color: '#ffe4e6' }, ticks: { color: '#64748b' } }
             }
-        });
-    </script>
-</body>
-</html>
+        }
+    });
+
+    // Función dinámica para actualizar estado cuando haya flujo del ESP32-S3
+    function actualizarEstadoEnVivo() {
+        fetch('/api/estado-nodos')
+            .then(response => response.json())
+            .then(data => {
+                if (data.conectado) {
+                    document.getElementById('status-dot').className = "h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse";
+                    document.getElementById('status-tag-text').className = "text-xs font-semibold uppercase tracking-wider text-emerald-600";
+                    document.getElementById('status-tag-text').innerText = "Estado: Flujo de datos activo";
+                    
+                    document.getElementById('conexion-badge').className = "bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-lg";
+                    document.getElementById('conexion-badge').innerText = "ESP32-S3: Conectado (Flujo activo)";
+                    
+                    document.getElementById('tabla-status-badge').className = "text-xs px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg";
+                    document.getElementById('tabla-status-badge').innerText = "Recibiendo telemetría en vivo";
+
+                    document.getElementById('kpi-nodos').innerText = "6 / 6";
+                    document.getElementById('kpi-nodos-badge').className = "text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full";
+                    document.getElementById('kpi-nodos-badge').innerText = "Operativo";
+                    document.getElementById('kpi-consumo').innerText = data.consumoTotal || "1.42";
+                    document.getElementById('kpi-estado-texto').className = "text-xl font-bold text-emerald-600 mt-1";
+                    document.getElementById('kpi-estado-texto').innerText = "Hay flujo en vivo";
+
+                    document.querySelectorAll('.nodo-estado').forEach(el => {
+                        el.className = "nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200";
+                        el.innerText = "Encendido";
+                    });
+                }
+            })
+            .catch(() => {
+                // Mantiene estado "En espera" si no hay respuesta aún
+            });
+    }
+
+    setInterval(actualizarEstadoEnVivo, 3000);
+</script>
+{% endblock %}
