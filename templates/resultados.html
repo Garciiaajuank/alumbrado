@@ -9,222 +9,335 @@
         <span class="inline-block bg-rose-100 text-rose-800 text-xs font-bold px-3 py-2 rounded-full">
             EVALUACIÓN Y CIERRE · ENTREGABLES Y CONCLUSIONES
         </span>
-
         <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mt-4">
             Productos, resultados y conclusiones
         </h1>
-
         <p class="text-slate-500 mt-3 max-w-3xl">
-            Contrastación de entregables, métricas de operación y evaluación integral del Proyecto de Gestión del Conocimiento de Alumbrado Público Inteligente.
+            Comparación entre los productos esperados y los alcanzados, evidencias verificables del funcionamiento, conclusiones por objetivo, limitaciones, oportunidades de mejora y fuentes consultadas del proyecto Alumbrado Público Inteligente.
         </p>
     </section>
 
     <!-- PRODUCTOS ESPERADOS VS ALCANZADOS -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-        <!-- Productos Esperados -->
         <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
             <div class="flex items-center gap-3 mb-4">
                 <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">PLANIFICACIÓN</span>
                 <h2 class="text-xl font-bold text-slate-900">Productos esperados</h2>
             </div>
             <p class="text-xs text-slate-500 mb-5">
-                Entregables proyectados al inicio del semestre para dar respuesta a la problemática de gestión energética y mantenimiento del alumbrado público.
+                Entregables planteados al inicio del módulo para responder a la necesidad de medir el consumo y detectar fallas en el alumbrado público.
             </p>
             <ul class="space-y-3 text-sm text-slate-700">
-                <li class="flex items-start gap-2.5">
-                    <span class="text-slate-400 font-bold mt-0.5">•</span>
-                    <span><strong>Prototipo electrónico funcional (Maqueta IoT):</strong> Circ circuito a escala capaz de censar variables eléctricas y conmutar el estado de las luminarias.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                    <span class="text-slate-400 font-bold mt-0.5">•</span>
-                    <span><strong>Modelo de datos transaccional (OLTP):</strong> Base de datos relacional normalizada en SQL Server para almacenar el inventario y lecturas operativas.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                    <span class="text-slate-400 font-bold mt-0.5">•</span>
-                    <span><strong>Almacén de datos y flujo ETL (OLAP):</strong> Esquema multidimensional estrella alimentado mediante un paquete automatizado en SSIS.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                    <span class="text-slate-400 font-bold mt-0.5">•</span>
-                    <span><strong>Plataforma web de monitoreo:</strong> Aplicación centralizada desplegada en la nube para visualizar en tiempo real el comportamiento de la red.</span>
-                </li>
+                <li class="flex items-start gap-2.5"><span class="text-slate-400 font-bold mt-0.5">•</span>
+                    <span><strong>Maqueta funcional:</strong> prototipo con una placa ESP32-S3, un reloj y LED que simulan postes encendidos entre las 18:00 y las 06:00.</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-slate-400 font-bold mt-0.5">•</span>
+                    <span><strong>Modelo relacional:</strong> base de datos en SQL Server con usuarios, procesos, dispositivos, mediciones y eventos.</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-slate-400 font-bold mt-0.5">•</span>
+                    <span><strong>Simulación de un millón de mediciones:</strong> datos de una red de 100 postes, con errores controlados para limpiar.</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-slate-400 font-bold mt-0.5">•</span>
+                    <span><strong>ETL y Data Warehouse:</strong> paquete SSIS que limpia y carga un modelo estrella.</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-slate-400 font-bold mt-0.5">•</span>
+                    <span><strong>Dashboard y sitio web:</strong> reporte de Power BI integrado en una página publicada, con cinco conocimientos y dos decisiones.</span></li>
             </ul>
         </div>
 
-        <!-- Productos Alcanzados -->
         <div class="bg-white border border-rose-200 rounded-2xl p-6 sm:p-8 shadow-sm">
             <div class="flex items-center gap-3 mb-4">
-                <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-1 rounded-lg">CUMPLIMIENTO 100%</span>
+                <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-1 rounded-lg">ALCANZADO</span>
                 <h2 class="text-xl font-bold text-slate-900">Productos alcanzados</h2>
             </div>
             <p class="text-xs text-slate-500 mb-5">
-                Soluciones desarrolladas, integradas y validadas satisfactoriamente dentro del ecosistema tecnológico del proyecto.
+                Soluciones desarrolladas e integradas dentro del proyecto, cada una con su evidencia en esta página.
             </p>
             <ul class="space-y-3 text-sm text-slate-700">
-                <li class="flex items-start gap-2.5">
-                    <span class="text-rose-600 font-bold mt-0.5">✓</span>
-                    <span><strong>Maqueta física operativa:</strong> Implementación hardware con microcontrolador, sensores de corriente/voltaje y relés de control automatizado.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                    <span class="text-rose-600 font-bold mt-0.5">✓</span>
-                    <span><strong>Base de datos operacional poblada:</strong> Estructura relacional con 1.050.000 registros de telemetría simulada para 100 postes.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                    <span class="text-rose-600 font-bold mt-0.5">✓</span>
-                    <span><strong>Data Warehouse alumbradoDW y ETL:</strong> Modelo estrella de 6 tablas con flujo CargaAlumbradoDW.dtsx y auditoría de rechazos.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                    <span class="text-rose-600 font-bold mt-0.5">✓</span>
-                    <span><strong>Aplicación web en Flask (Producción):</strong> Portal responsivo con Tailwind CSS versionado en GitHub y desplegado en Render.</span>
-                </li>
+                <li class="flex items-start gap-2.5"><span class="text-rose-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Maqueta con seis LED:</strong> ESP32-S3 y reloj DS3231 que encienden los postes por horario y envían su estado a la página. <a class="text-rose-600 hover:underline" href="{{ url_for('maqueta') }}">Ver maqueta</a></span></li>
+                <li class="flex items-start gap-2.5"><span class="text-rose-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Base alumbrado con nueve tablas:</strong> rol, usuario, proceso, usuario_proceso, zona, dispositivo, medicion, tipo_evento y evento. <a class="text-rose-600 hover:underline" href="{{ url_for('bases_datos') }}">Ver MER</a></span></li>
+                <li class="flex items-start gap-2.5"><span class="text-rose-600 font-bold mt-0.5">✓</span>
+                    <span><strong>1.050.000 mediciones simuladas:</strong> 100 postes con 10.500 lecturas cada uno, una cada 5 minutos desde el 1 de octubre de 2026.</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-rose-600 font-bold mt-0.5">✓</span>
+                    <span><strong>alumbradoDW y CargaAlumbradoDW.dtsx:</strong> modelo estrella (una tabla de hechos y cuatro dimensiones) y dos tablas auxiliares de rechazos y control. <a class="text-rose-600 hover:underline" href="{{ url_for('dw_etl') }}">Ver DW y ETL</a></span></li>
+                <li class="flex items-start gap-2.5"><span class="text-rose-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Sitio en Flask publicado en Render:</strong> navegación de nueve secciones, dashboard integrado y estado de los postes en vivo. <a class="text-rose-600 hover:underline" href="{{ url_for('envivo') }}">Ver En vivo</a></span></li>
             </ul>
         </div>
 
     </section>
 
-    <!-- EVIDENCIAS VERIFICABLES DEL FUNCIONAMIENTO -->
+    <!-- EVIDENCIAS VERIFICABLES -->
     <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
-        <h2 class="text-xl font-bold text-slate-900 mb-2">
-            Evidencias verificables del funcionamiento
-        </h2>
+        <h2 class="text-xl font-bold text-slate-900 mb-2">Evidencias verificables del funcionamiento</h2>
         <p class="text-sm text-slate-500 mb-6">
-            Indicadores cuantitativos y artefactos técnicos auditables que demuestran la operatividad integral del sistema.
+            Cifras y artefactos que se pueden comprobar con consultas SQL, con el paquete SSIS o navegando por el sitio.
         </p>
 
-        <!-- Tarjetas de métricas auditables -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
             <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <span class="text-xs font-semibold text-slate-400 uppercase">Volumen de Telemetría</span>
+                <span class="text-xs font-semibold text-slate-400 uppercase">Mediciones simuladas</span>
                 <div class="text-2xl font-bold text-slate-900 mt-1">1.050.000</div>
-                <p class="text-xs text-slate-500 mt-1">Registros generados en la capa operacional.</p>
+                <p class="text-xs text-slate-500 mt-1">100 postes, 10.500 lecturas por poste.</p>
             </div>
-
             <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <span class="text-xs font-semibold text-rose-700 uppercase">Tasa de Calidad ETL</span>
-                <div class="text-2xl font-bold text-rose-700 mt-1">99.41%</div>
-                <p class="text-xs text-slate-500 mt-1">1.043.772 filas limpias cargadas en fact_alumbrado.</p>
+                <span class="text-xs font-semibold text-rose-700 uppercase">Registros válidos</span>
+                <div class="text-2xl font-bold text-rose-700 mt-1">99,41 %</div>
+                <p class="text-xs text-slate-500 mt-1">1.043.772 filas cargadas en fact_alumbrado.</p>
             </div>
-
             <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <span class="text-xs font-semibold text-amber-700 uppercase">Trazabilidad de Errores</span>
+                <span class="text-xs font-semibold text-amber-700 uppercase">Filas rechazadas</span>
                 <div class="text-2xl font-bold text-amber-700 mt-1">6.228</div>
-                <p class="text-xs text-slate-500 mt-1">Anomalías aisladas en tabla de auditoría.</p>
+                <p class="text-xs text-slate-500 mt-1">Guardadas con su motivo en rechazo_medicion.</p>
             </div>
-
             <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <span class="text-xs font-semibold text-slate-400 uppercase">Disponibilidad Web</span>
-                <div class="text-2xl font-bold text-slate-900 mt-1">24/7 Cloud</div>
-                <p class="text-xs text-slate-500 mt-1">Despliegue continuo vía Gunicorn en Render.</p>
+                <span class="text-xs font-semibold text-slate-400 uppercase">Energía total</span>
+                <div class="text-2xl font-bold text-slate-900 mt-1">1.727,10 kWh</div>
+                <p class="text-xs text-slate-500 mt-1">Suma de la red en 37 días de datos.</p>
             </div>
         </div>
 
-        <!-- Tabla de trazabilidad de artefactos -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-semibold text-slate-400 uppercase">Postes monitoreados</span>
+                <div class="text-2xl font-bold text-slate-900 mt-1">100</div>
+                <p class="text-xs text-slate-500 mt-1">6 físicos en la maqueta y 94 simulados.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-semibold text-slate-400 uppercase">Tasa de falla</span>
+                <div class="text-2xl font-bold text-slate-900 mt-1">0,52 %</div>
+                <p class="text-xs text-slate-500 mt-1">2.705 fallas sobre 519.372 lecturas encendidas o en falla.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-semibold text-slate-400 uppercase">Dashboard</span>
+                <div class="text-2xl font-bold text-slate-900 mt-1">5 páginas</div>
+                <p class="text-xs text-slate-500 mt-1">Con filtros e interacción cruzada.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <span class="text-xs font-semibold text-slate-400 uppercase">Hallazgos</span>
+                <div class="text-2xl font-bold text-slate-900 mt-1">5 + 2</div>
+                <p class="text-xs text-slate-500 mt-1">Cinco conocimientos y dos decisiones.</p>
+            </div>
+        </div>
+
         <div class="overflow-x-auto border border-slate-200 rounded-xl">
             <table class="w-full text-left border-collapse text-sm">
                 <thead>
                     <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-600">
                         <th class="py-3.5 px-4 font-bold">Componente</th>
-                        <th class="py-3.5 px-4 font-bold">Artefacto / Entregable Técnico</th>
-                        <th class="py-3.5 px-4 font-bold">Mecanismo de Verificación</th>
-                        <th class="py-3.5 px-4 font-bold">Estado</th>
+                        <th class="py-3.5 px-4 font-bold">Producto alcanzado</th>
+                        <th class="py-3.5 px-4 font-bold">Cómo se verifica</th>
+                        <th class="py-3.5 px-4 font-bold">Evidencia</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-200 text-slate-700">
                     <tr>
-                        <td class="py-3.5 px-4 font-semibold text-slate-900">Hardware IoT</td>
-                        <td class="py-3.5 px-4">Maqueta física de alumbrado público</td>
-                        <td class="py-3.5 px-4 text-xs text-slate-600">Pruebas de encendido automático y lectura de consumo.</td>
-                        <td class="py-3.5 px-4"><span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Verificado</span></td>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">Maqueta</td>
+                        <td class="py-3.5 px-4">ESP32-S3, reloj DS3231 y seis LED</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">Los LED se encienden por horario y el estado aparece en la sección En vivo.</td>
+                        <td class="py-3.5 px-4"><a class="text-rose-600 hover:underline" href="{{ url_for('envivo') }}">En vivo</a></td>
                     </tr>
                     <tr>
-                        <td class="py-3.5 px-4 font-semibold text-slate-900">Base de Datos OLTP</td>
-                        <td class="py-3.5 px-4">Esquema relacional y poblamiento masivo</td>
-                        <td class="py-3.5 px-4 text-xs text-slate-600">Consultas T-SQL de validación en SQL Server Management Studio.</td>
-                        <td class="py-3.5 px-4"><span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Verificado</span></td>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">Base relacional</td>
+                        <td class="py-3.5 px-4">Base alumbrado con nueve tablas</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">Consultas de validación en SQL Server: total de mediciones, rango de fechas y ausencia de registros huérfanos.</td>
+                        <td class="py-3.5 px-4"><a class="text-rose-600 hover:underline" href="{{ url_for('bases_datos') }}">MER</a></td>
                     </tr>
                     <tr>
-                        <td class="py-3.5 px-4 font-semibold text-slate-900">Integración ETL</td>
-                        <td class="py-3.5 px-4">Paquete CargaAlumbradoDW.dtsx (SSIS)</td>
-                        <td class="py-3.5 px-4 text-xs text-slate-600">Ejecución en Visual Studio con recuento de filas válidas y rechazos.</td>
-                        <td class="py-3.5 px-4"><span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Verificado</span></td>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">ETL</td>
+                        <td class="py-3.5 px-4">Paquete CargaAlumbradoDW.dtsx</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">Dos ejecuciones con los mismos conteos: extraídas = cargadas + rechazadas.</td>
+                        <td class="py-3.5 px-4"><a class="text-rose-600 hover:underline" href="{{ url_for('dw_etl') }}">DW y ETL</a></td>
                     </tr>
                     <tr>
-                        <td class="py-3.5 px-4 font-semibold text-slate-900">Analítica y Web</td>
-                        <td class="py-3.5 px-4">Aplicación Flask + GitHub / Render</td>
-                        <td class="py-3.5 px-4 text-xs text-slate-600">Navegación funcional en entorno productivo web.</td>
-                        <td class="py-3.5 px-4"><span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Verificado</span></td>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">Data Warehouse</td>
+                        <td class="py-3.5 px-4">Modelo estrella en alumbradoDW</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">Las consultas al DW coinciden con las cifras del dashboard (1.727,10 kWh y 2.705 fallas).</td>
+                        <td class="py-3.5 px-4"><a class="text-rose-600 hover:underline" href="{{ url_for('dw_etl') }}">DW y ETL</a></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">Dashboard</td>
+                        <td class="py-3.5 px-4">Reporte de Power BI de cinco páginas</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">Los filtros del reporte responden dentro de esta página, sin iniciar sesión.</td>
+                        <td class="py-3.5 px-4"><a class="text-rose-600 hover:underline" href="{{ url_for('dashboard') }}">Dashboard</a></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">Conocimientos</td>
+                        <td class="py-3.5 px-4">Cinco conocimientos y dos decisiones</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">Cada uno tiene gráfica, procedimiento y validación del tamaño de los grupos.</td>
+                        <td class="py-3.5 px-4"><a class="text-rose-600 hover:underline" href="{{ url_for('conocimientos') }}">Conocimientos</a></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3.5 px-4 font-semibold text-slate-900">Sitio web</td>
+                        <td class="py-3.5 px-4">Aplicación Flask en GitHub y Render</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">La URL pública responde y las secciones del menú son accesibles.</td>
+                        <td class="py-3.5 px-4"><a class="text-rose-600 hover:underline" href="{{ url_for('inicio') }}">Inicio</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <!-- CONCLUSIONES Y REFERENCIAS -->
+    <!-- CUMPLIMIENTO DE OBJETIVOS -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-5">
+        <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Cumplimiento de los objetivos</h2>
+            <p class="text-sm text-slate-500">
+                Objetivo general: construir una plataforma de datos que integre las mediciones del alumbrado público, las limpie con un ETL y las almacene en un data warehouse para analizar consumo, fallas y eventos.
+            </p>
+        </div>
+        <div class="overflow-x-auto border border-slate-200 rounded-xl">
+            <table class="w-full text-left text-sm">
+                <thead class="bg-slate-50 text-xs uppercase text-slate-600">
+                    <tr>
+                        <th class="py-3 px-4 font-bold">Objetivo específico</th>
+                        <th class="py-3 px-4 font-bold">Estado</th>
+                        <th class="py-3 px-4 font-bold">Resultado</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-slate-700 align-top">
+                    <tr>
+                        <td class="py-3 px-4 font-medium">Diseñar un modelo relacional con usuarios, procesos, dispositivos, mediciones y eventos</td>
+                        <td class="py-3 px-4 text-rose-700 font-semibold">✓ Cumplido</td>
+                        <td class="py-3 px-4 text-xs">Nueve tablas con claves primarias y foráneas. La relación entre usuarios y procesos se resuelve con una tabla puente.</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4 font-medium">Simular al menos 1.000.000 de mediciones con errores controlados</td>
+                        <td class="py-3 px-4 text-rose-700 font-semibold">✓ Cumplido</td>
+                        <td class="py-3 px-4 text-xs">1.050.000 mediciones con nulos, el valor 9999 y estados escritos de varias formas. El script se puede repetir.</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4 font-medium">Diseñar un data warehouse con modelo estrella y granularidad definida</td>
+                        <td class="py-3 px-4 text-rose-700 font-semibold">✓ Cumplido</td>
+                        <td class="py-3 px-4 text-xs">Una fila de hechos es una medición válida de un poste en un momento de 5 minutos. Hay cuatro dimensiones: poste, fecha, hora y estado.</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4 font-medium">Implementar un ETL en SSIS que limpie, homologue y cargue sin duplicados</td>
+                        <td class="py-3 px-4 text-rose-700 font-semibold">✓ Cumplido</td>
+                        <td class="py-3 px-4 text-xs">1.043.772 filas cargadas y 6.228 rechazadas (0,59 %). Al repetir la carga no se duplicó ningún dato.</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4 font-medium">Responder preguntas de negocio con consultas analíticas y un dashboard</td>
+                        <td class="py-3 px-4 text-rose-700 font-semibold">✓ Cumplido</td>
+                        <td class="py-3 px-4 text-xs">El dashboard y las consultas SQL dan las mismas cifras. De ellos salen cinco conocimientos y dos decisiones.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CONCLUSIONES -->
     <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
         <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">
-                Conclusiones y evaluación del proyecto
-            </h2>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Conclusiones</h2>
             <p class="text-sm text-slate-500">
-                Análisis final del cumplimiento de metas, limitantes técnicas superadas y proyecciones futuras para la optimización del sistema.
+                Lo que aprendimos, lo que mostró el análisis y lo que no se puede afirmar con datos simulados.
             </p>
         </div>
 
-        <!-- Grid de Conclusiones y Objetivos -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-2">
                 <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                    Cumplimiento de Objetivos
+                    Lo que aprendimos
                 </h3>
                 <p class="text-xs text-slate-600 leading-relaxed">
-                    Se cumplieron a cabalidad los objetivos generales y específicos planteados en el PGC. Se estructuró un ciclo completo de ingeniería de datos que abarca desde la captura física de variables con IoT hasta la explotación analítica en un Data Warehouse, integrando interfaces web modernas y escalables.
+                    Los datos casi nunca llegan limpios: en la simulación el estado de un poste venía escrito de siete formas distintas, y sin homologarlo los análisis habrían salido mal. También vimos que las dimensiones se cargan antes que los hechos, porque la tabla de hechos necesita sus claves, y que guardar los rechazos con su motivo permite comprobar que no se perdió nada.
                 </p>
             </div>
 
             <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-2">
                 <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                    Limitaciones Técnicas
+                    Lo que mostró el análisis
                 </h3>
                 <p class="text-xs text-slate-600 leading-relaxed">
-                    Durante el desarrollo se presentaron restricciones de procesamiento asociadas al volumen masivo de registros (más de un millón de filas) en entornos locales, lo cual exigió optimizar las consultas T-SQL, los índices en el motor relacional y la configuración de memoria en los flujos de SSIS.
+                    El consumo se reparte casi por igual entre las cinco zonas (0,07 % de diferencia) y ocurre solo en las 12 horas nocturnas, a 3,94 kWh por hora y por día. El poste P030 encabeza las fallas con 42, aunque ese valor también puede salir por azar, y la tasa de falla de la red es de 0,52 %.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-2">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                    Decisiones que salen del análisis
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    La primera es revisar los diez postes con más fallas, empezando por P030. La segunda es probar bajar la intensidad de las luminarias entre las 00:00 y las 05:59 en una zona de prueba, porque la madrugada concentra el 50,7 % del consumo. Las dos son acciones de verificación, no de causa demostrada.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-2">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                    Aporte del proyecto
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Muestra cómo una red de alumbrado, aunque sea simulada, se puede medir y analizar con datos para ver dónde se gasta la energía y qué postes revisar primero, en línea con los ODS 7 (energía asequible y no contaminante) y 11 (ciudades y comunidades sostenibles).
                 </p>
             </div>
 
             <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-2 md:col-span-2">
                 <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                    Oportunidades de Mejora y Proyección
+                    Dashboard integrado y funcionando
                 </h3>
                 <p class="text-xs text-slate-600 leading-relaxed">
-                    Como evolución natural del proyecto, se proyecta la integración de modelos de Machine Learning predictivo para el mantenimiento preventivo de luminarias basado en series temporales, así como la conexión directa de la API de Flask con servicios de bases de datos en la nube para telemetría en tiempo real.
+                    El reporte de Power BI está integrado en la sección Dashboard de esta página y se puede usar desde ella: se cambia de página del reporte, se aplican filtros y las gráficas responden al hacer clic. No requiere iniciar sesión. Las cifras que muestra coinciden con las consultas SQL sobre el Data Warehouse (1.727,10 kWh, 2.705 fallas y 1.043.772 lecturas válidas).
                 </p>
             </div>
         </div>
+    </section>
 
-        <!-- Fuentes Consultadas / Referencias -->
-        <div class="pt-4 border-t border-slate-100">
-            <h3 class="font-bold text-slate-800 text-sm mb-3">Fuentes consultadas y referencias bibliográficas</h3>
-            <ul class="space-y-2 text-xs text-slate-600">
-                <li class="flex items-start gap-2">
-                    <span class="text-slate-400 font-mono">[1]</span>
-                    <span>Kimball, R., &amp; Ross, M. (2013). <em>The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling</em> (3rd ed.). John Wiley &amp; Sons.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                    <span class="text-slate-400 font-mono">[2]</span>
-                    <span>Microsoft Corporation. (2024). <em>SQL Server Integration Services (SSIS) Documentation and Data Flow Architecture</em>. Microsoft Learn.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                    <span class="text-slate-400 font-mono">[3]</span>
-                    <span>Palacios, R., &amp; Cundinamarca University Engineering Department. (2025). <em>Guía metodológica para Proyectos de Gestión del Conocimiento (PGC)</em>. Extensión Chía.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                    <span class="text-slate-400 font-mono">[4]</span>
-                    <span>Grinberg, M. (2018). <em>Flask Web Development: Developing Web Applications with Python</em> (2nd ed.). O'Reilly Media.</span>
-                </li>
+    <!-- LIMITACIONES Y MEJORAS -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-4">Limitaciones</h2>
+            <ul class="space-y-3 text-sm text-slate-700 list-disc pl-5">
+                <li><strong>Datos simulados.</strong> Las mediciones siguen reglas que definimos y no vienen de una red real. Los conocimientos muestran el método y deben validarse con datos reales.</li>
+                <li><strong>Prototipo pequeño.</strong> Solo 6 de los 100 postes existen físicamente en la maqueta.</li>
+                <li><strong>Fallas asignadas al azar.</strong> El ranking de postes con más fallas refleja variación aleatoria y no señala postes defectuosos.</li>
+                <li><strong>Período corto.</strong> Son 37 días, con 5 o 6 observaciones por día de la semana, así que no se pueden evaluar patrones semanales ni estacionales.</li>
+                <li><strong>Voltaje y potencia con rangos fijos.</strong> No reflejan las variaciones de una red eléctrica real.</li>
+                <li><strong>Datos en vivo sin historial.</strong> Lo que envía el ESP32 se muestra en tiempo real, pero no se guarda en la base de datos.</li>
+                <li><strong>Dependencia de la red.</strong> La maqueta necesita una red WiFi con internet para enviar su estado.</li>
+                <li><strong>Servidor gratuito.</strong> Si nadie visita la página por un rato, Render la suspende y el primer acceso puede tardar cerca de un minuto.</li>
             </ul>
         </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-4">Oportunidades de mejora</h2>
+            <ul class="space-y-3 text-sm text-slate-700 list-disc pl-5">
+                <li><strong>ETL incremental y programado.</strong> Guardar el último medicion_id cargado y ejecutar el paquete de forma automática.</li>
+                <li><strong>Historial en vivo.</strong> Guardar en la base de datos lo que envía el ESP32 para que el dashboard se actualice solo.</li>
+                <li><strong>Más sensores en la maqueta.</strong> Un sensor de luz para el encendido real y uno de corriente para medir el consumo de cada poste.</li>
+                <li><strong>Alertas automáticas</strong> por correo o mensaje ante fallas, sobreconsumo o bajo voltaje.</li>
+                <li><strong>Reporte con control de acceso.</strong> Publicar el reporte de Power BI en un espacio de trabajo con usuarios, en lugar de la opción pública, y con actualización programada.</li>
+                <li><strong>Datos reales.</strong> Probar el análisis con mediciones de una red de alumbrado real.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- REFERENCIAS -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-1">Fuentes consultadas y referencias</h2>
+        <p class="text-xs text-slate-500 mb-4">APA 7.ª edición</p>
+        <ul class="space-y-3 text-xs text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-slate-400 font-mono">[1]</span>
+                <span>Chapman, P., Clinton, J., Kerber, R., Khabaza, T., Reinartz, T., Shearer, C., y Wirth, R. (2000). <em>CRISP-DM 1.0: Step-by-step data mining guide</em>. SPSS Inc.</span></li>
+            <li class="flex items-start gap-2"><span class="text-slate-400 font-mono">[2]</span>
+                <span>Espressif Systems. (s. f.). <em>Arduino-ESP32 documentation</em>. <a class="text-rose-600 hover:underline" href="https://docs.espressif.com/projects/arduino-esp32/en/latest/" target="_blank" rel="noopener">https://docs.espressif.com/projects/arduino-esp32/en/latest/</a></span></li>
+            <li class="flex items-start gap-2"><span class="text-slate-400 font-mono">[3]</span>
+                <span>Grinberg, M. (2018). <em>Flask web development: Developing web applications with Python</em> (2.ª ed.). O'Reilly Media.</span></li>
+            <li class="flex items-start gap-2"><span class="text-slate-400 font-mono">[4]</span>
+                <span>Kimball, R., y Ross, M. (2013). <em>The data warehouse toolkit: The definitive guide to dimensional modeling</em> (3.ª ed.). Wiley.</span></li>
+            <li class="flex items-start gap-2"><span class="text-slate-400 font-mono">[5]</span>
+                <span>Microsoft. (s. f.). <em>SQL Server Integration Services</em>. Microsoft Learn. <a class="text-rose-600 hover:underline" href="https://learn.microsoft.com/en-us/sql/integration-services/sql-server-integration-services" target="_blank" rel="noopener">https://learn.microsoft.com/en-us/sql/integration-services/sql-server-integration-services</a></span></li>
+            <li class="flex items-start gap-2"><span class="text-slate-400 font-mono">[6]</span>
+                <span>Microsoft. (2025). <em>Publish to web from Power BI</em>. Microsoft Learn. <a class="text-rose-600 hover:underline" href="https://learn.microsoft.com/en-us/power-bi/collaborate-share/service-publish-to-web" target="_blank" rel="noopener">https://learn.microsoft.com/en-us/power-bi/collaborate-share/service-publish-to-web</a></span></li>
+            <li class="flex items-start gap-2"><span class="text-slate-400 font-mono">[7]</span>
+                <span>Naciones Unidas. (2015). <em>Transformar nuestro mundo: la Agenda 2030 para el Desarrollo Sostenible</em>. Asamblea General de las Naciones Unidas.</span></li>
+            <li class="flex items-start gap-2"><span class="text-slate-400 font-mono">[8]</span>
+                <span>Wirth, R., y Hipp, J. (2000). CRISP-DM: Towards a standard process model for data mining. En <em>Proceedings of the 4th International Conference on the Practical Applications of Knowledge Discovery and Data Mining</em> (pp. 29–39).</span></li>
+        </ul>
     </section>
 
 </div>
