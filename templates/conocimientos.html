@@ -1,270 +1,505 @@
 {% extends "base.html" %}
 
-{% block title %}Conocimientos Evidentes{% endblock %}
+{% block title %}Del análisis a la decisión · Conocimientos Evidentes{% endblock %}
 
 {% block content %}
 <div class="space-y-8 max-w-7xl mx-auto">
-    
-    <!-- Encabezado de la Sección -->
-    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Documentación de Conocimientos Evidentes</h2>
-            <p class="text-sm text-slate-500 mt-1">Hallazgos analíticos derivados del modelo estrella y el dashboard de Alumbrado Público (Rúbrica Institucional).</p>
-        </div>
-        <div class="flex items-center space-x-2 bg-rose-50 text-rose-700 px-3.5 py-2 rounded-xl text-xs font-semibold border border-rose-100">
-            <span class="h-2 w-2 rounded-full bg-rose-500 animate-pulse"></span>
-            <span>5 Hallazgos Validados</span>
-        </div>
-    </div>
 
-    <!-- Contenedor Principal de Conocimientos -->
+    <!-- ================= ENCABEZADO E ÍNDICE DE CONOCIMIENTOS ================= -->
+    <section class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="inline-block bg-rose-100 text-rose-800 text-xs font-bold px-3 py-1.5 rounded-full mb-3">
+                    DEL ANÁLISIS A LA DECISIÓN · RÚBRICA PGC
+                </span>
+                <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+                    Cinco conocimientos evidentes
+                </h1>
+                <p class="text-sm text-slate-500 mt-2 max-w-3xl leading-relaxed">
+                    Cada conocimiento sale de los análisis del dashboard sobre las <strong>1.043.772 lecturas válidas</strong> de <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded text-slate-700">alumbradoDW</code> (escalando a 100 postes la lógica de nuestra maqueta física con ESP32-S3, jumpers, pitillos y 6 LEDs) y se presenta con su pregunta, las variables, cómo se calculó, el resultado con su gráfica, el hallazgo, qué significa, para qué sirve y qué no se puede afirmar.
+                </p>
+            </div>
+            <div class="flex items-center space-x-2 bg-rose-50 text-rose-700 px-3.5 py-2 rounded-xl text-xs font-semibold border border-rose-100 shrink-0">
+                <span class="h-2 w-2 rounded-full bg-rose-500 animate-pulse"></span>
+                <span>5 Conocimientos · 2 Decisiones</span>
+            </div>
+        </div>
+
+        <!-- Tabla resumen -->
+        <div class="overflow-x-auto border border-slate-200 rounded-xl">
+            <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                    <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-600">
+                        <th class="py-3 px-4 font-bold w-12">#</th>
+                        <th class="py-3 px-4 font-bold">Conocimiento</th>
+                        <th class="py-3 px-4 font-bold">Tipo de análisis</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-slate-700">
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-3 px-4 font-bold text-rose-700"><a href="#c1" class="underline">1</a></td>
+                        <td class="py-3 px-4 font-medium text-slate-900"><a href="#c1" class="hover:text-rose-700">El consumo se reparte casi por igual entre las cinco zonas</a></td>
+                        <td class="py-3 px-4 text-xs text-slate-500">Bivariado (zona × energía)</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-3 px-4 font-bold text-rose-700"><a href="#c2" class="underline">2</a></td>
+                        <td class="py-3 px-4 font-medium text-slate-900"><a href="#c2" class="hover:text-rose-700">Todo el consumo ocurre en las 12 horas nocturnas, a un ritmo constante</a></td>
+                        <td class="py-3 px-4 text-xs text-slate-500">Bivariado (hora × energía)</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-3 px-4 font-bold text-rose-700"><a href="#c3" class="underline">3</a></td>
+                        <td class="py-3 px-4 font-medium text-slate-900"><a href="#c3" class="hover:text-rose-700">Jueves y viernes parecen consumir más, pero solo tienen más días</a></td>
+                        <td class="py-3 px-4 text-xs text-slate-500">Bivariado (día de la semana × energía)</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-3 px-4 font-bold text-rose-700"><a href="#c4" class="underline">4</a></td>
+                        <td class="py-3 px-4 font-medium text-slate-900"><a href="#c4" class="hover:text-rose-700">El poste P030 encabeza las fallas, pero el azar también lo produce</a></td>
+                        <td class="py-3 px-4 text-xs text-slate-500">Bivariado (poste × fallas)</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-3 px-4 font-bold text-rose-700"><a href="#c5" class="underline">5</a></td>
+                        <td class="py-3 px-4 font-medium text-slate-900"><a href="#c5" class="hover:text-rose-700">La falla es rara: 0,52 % de las lecturas con el poste encendido</a></td>
+                        <td class="py-3 px-4 text-xs text-slate-500">Univariado (estado)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ================= CINCO CONOCIMIENTOS EVIDENTES ================= -->
     <div class="space-y-6">
 
         <!-- ================= CONOCIMIENTO 1 ================= -->
-        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <section id="c1" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6 scroll-mt-20">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
-                <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
-                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">1</span>
-                    <span>Distribución de Estados Operativos del Parque Lumínico</span>
-                </h3>
-                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Análisis Univariado</span>
+                <h2 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm shrink-0">1</span>
+                    <span>El consumo se reparte casi por igual entre las cinco zonas</span>
+                </h2>
+                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Página Consumo · Bivariado (zona × energía)</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
-                    <p class="text-slate-600">¿Cuál es el estado operativo predominante en el parque de alumbrado público y qué proporción de dispositivos presentan anomalías críticas?</p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <div class="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between">
+                    <img src="{{ url_for('static', filename='img/conocimiento1.png') }}" alt="Energía por zona (kWh)" class="w-full h-auto object-contain rounded-lg border border-slate-200 bg-white p-2">
+                    <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+                        <strong class="text-slate-800">Energía por zona (kWh), 1 oct a 6 nov 2026.</strong> Total de la red: 1.727,10 kWh en 5 zonas.
+                    </p>
                 </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
-                    <p class="text-slate-600"><code class="text-xs bg-slate-200 px-1 py-0.5 rounded">fact_alumbrado.id_estado</code> y <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_estado.nombre_estado</code>.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
-                    <p class="text-slate-600">Conteo de registros agrupados por estado operativo y cálculo de la frecuencia relativa porcentual sobre el total de mediciones.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
-                    <p class="text-slate-600">78% Encendido, 17% Apagado y 5% Falla crítica. Evidenciado mediante gráfico de dona univariado en Power BI.</p>
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">¿Alguna zona gasta mucha más energía que las otras? Sirve para saber dónde enfocar el ahorro.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Zona del poste y energía en kWh (<code class="bg-slate-200 px-1 py-0.5 rounded">energia_wh ÷ 1.000</code>).</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Suma de la energía por zona sobre las 1.043.772 lecturas válidas y comparación de cada zona con el promedio.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Las cinco zonas están entre <strong>345,30 y 345,56 kWh</strong> (promedio 345,42 kWh). Diferencia de 0,26 kWh (0,07%).</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Ninguna zona destaca: el consumo es casi idéntico en todas.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Todos los postes tienen la misma potencia nominal (40 W) y el mismo horario.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Cualquiera sirve de zona de comparación para probar ahorros (Decisión 2).</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Es una simulación: en una red real el consumo cambia con el tipo de luminaria.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
-                    <p class="text-slate-700">Dominio absoluto de la operación normal, contrastado con un nicho crítico del 5% en estado de falla.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
-                    <p class="text-slate-700">La infraestructura muestra alta estabilidad, pero el 5% de fallas representa un volumen significativo de dispositivos inactivos.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
-                    <p class="text-slate-700">Permite enfocar los esfuerzos operativos y de reparación directamente hacia el subconjunto de luminarias en fallo.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
-                    <p class="text-slate-700">No detalla la causa raíz física del fallo (eléctrica o mecánica), limitándose al reporte lógico del sensor.</p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <!-- ================= CONOCIMIENTO 2 ================= -->
-        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <section id="c2" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6 scroll-mt-20">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
-                <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
-                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">2</span>
-                    <span>Concentración y Densidad de Dispositivos por Zona Geográfica</span>
-                </h3>
-                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Análisis Univariado</span>
+                <h2 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm shrink-0">2</span>
+                    <span>Todo el consumo ocurre en las 12 horas nocturnas, a un ritmo constante</span>
+                </h2>
+                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Página Consumo · Bivariado (hora × energía)</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
-                    <p class="text-slate-600">¿Cómo se distribuyen físicamente los postes de alumbrado público a lo largo de las distintas zonas de cobertura territorial?</p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <div class="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between">
+                    <img src="{{ url_for('static', filename='img/conocimiento2.png') }}" alt="Energía por hora del día" class="w-full h-auto object-contain rounded-lg border border-slate-200 bg-white p-2">
+                    <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+                        <strong class="text-slate-800">Energía por hora del día (kWh).</strong> Franja nocturna resaltada (3,94 kWh por hora al día).
+                    </p>
                 </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
-                    <p class="text-slate-600"><code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_poste.zona</code> y <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">fact_alumbrado.id_poste</code>.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
-                    <p class="text-slate-600">Agregación y conteo absoluto de postes únicos asociados a cada sector mediante la dimensión espacial.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
-                    <p class="text-slate-600">Zona Centro concentra el 40%, Zona Norte el 35% y Zona Sur el 25% de los postes instalados.</p>
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">¿Se respeta el horario de encendido de 18:00 a 06:00 y hay consumo fuera de él?</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Hora del día (0 a 23), franja (nocturna o diurna) y energía en kWh.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Suma de la energía por hora y por franja, dividida entre los días con datos de cada hora.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">De 06:00 a 17:59 el consumo es 0 kWh. Las horas 0 a 5 suman <strong>875,54 kWh (50,7%)</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Solo hay consumo de noche y es igual en todas las horas nocturnas.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">El horario programado se cumple correctamente en la red y la maqueta.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Línea base para detectar anomalías y sustenta la Decisión 2 de atenuación.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Simulado con regla fija; en una red real existen sensores crepusculares.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
-                    <p class="text-slate-700">Desigualdad clara en la densidad de infraestructura, siendo el sector céntrico el de mayor concentración lumínica.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
-                    <p class="text-slate-700">La Zona Centro demanda mayor capacidad energética y logística debido al volumen masivo de dispositivos en operación.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
-                    <p class="text-slate-700">Justifica técnicamente la distribución presupuestal y la asignación de recursos de mantenimiento por sectores.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
-                    <p class="text-slate-700">No evalúa la eficiencia lumínica o cobertura espacial real en metros cuadrados, solo la cantidad nominal de postes.</p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <!-- ================= CONOCIMIENTO 3 ================= -->
-        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <section id="c3" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6 scroll-mt-20">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
-                <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
-                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">3</span>
-                    <span>Relación entre Franja Horaria y Consumo Energético (Wh)</span>
-                </h3>
-                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Análisis Bivariado</span>
+                <h2 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm shrink-0">3</span>
+                    <span>Jueves y viernes parecen consumir más, pero solo tienen más días</span>
+                </h2>
+                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Página Consumo · Bivariado (día de la semana × energía)</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
-                    <p class="text-slate-600">¿Cómo fluctúa el consumo energético registrado en la red según la franja horaria diurna y nocturna?</p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <div class="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between">
+                    <img src="{{ url_for('static', filename='img/conocimiento3.png') }}" alt="Días con datos por día de la semana" class="w-full h-auto object-contain rounded-lg border border-slate-200 bg-white p-2">
+                    <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+                        <strong class="text-slate-800">Días con datos por día de la semana (37 días).</strong> Jueves y viernes aparecen 6 veces.
+                    </p>
                 </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
-                    <p class="text-slate-600"><code class="text-xs bg-slate-200 px-1 py-0.5 rounded">fact_alumbrado.consumo_wh</code> y <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_tiempo.franja_horaria</code>.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
-                    <p class="text-slate-600">Cruce bivariado promediando el consumo energético agrupado por las franjas horarias registradas en el modelo.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
-                    <p class="text-slate-600">El 92% del consumo se concentra entre las 18:00 y las 06:00, con una media de 250 Wh por registro nocturno.</p>
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">¿Hay días de la semana con más consumo energético global?</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Día de la semana, fecha y energía en kWh.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Suma de energía por día de la semana y cálculo de promedio diario (<code class="bg-slate-200 px-1 rounded">suma ÷ días con datos</code>).</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Jueves y viernes suman más kWh (<strong>284,36</strong> y <strong>260,50 kWh</strong>) por tener 6 registros frente a 5 de los demás.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">La diferencia en totales viene del número de días y no de un mayor consumo.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Comparar totales sin normalizar engaña; al ver promedios diarios no hay variación.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Establece la regla metodológica de comparar siempre promedios por día.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Con solo 37 días de muestra no se pueden establecer estacionalidades semanales.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
-                    <p class="text-slate-700">Correlación directa y estricta entre el ciclo nocturno y la activación masiva del consumo de energía.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
-                    <p class="text-slate-700">El sistema opera acorde a los ciclos programados, evitando consumos innecesarios durante las horas diurnas.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
-                    <p class="text-slate-700">Facilita la detección inmediata de anomalías ante registros de potencia elevados durante el día.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
-                    <p class="text-slate-700">No contempla alteraciones climáticas extraordinarias (días muy oscuros) que fuercen encendidos diurnos.</p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <!-- ================= CONOCIMIENTO 4 ================= -->
-        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <section id="c4" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6 scroll-mt-20">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
-                <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
-                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">4</span>
-                    <span>Incidencia Relativa de Fallas Operativas por Sector Territorial</span>
-                </h3>
-                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Análisis Bivariado</span>
+                <h2 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm shrink-0">4</span>
+                    <span>El poste P030 encabeza las fallas, pero el azar también lo produce</span>
+                </h2>
+                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium w-fit">Página Fallas y eventos · Bivariado (poste × fallas)</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
-                    <p class="text-slate-600">¿Qué zona geográfica presenta la mayor tasa relativa de fallas operativas frente a su total de dispositivos instalados?</p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <div class="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between">
+                    <img src="{{ url_for('static', filename='img/conocimiento4.png') }}" alt="Diez postes con más fallas" class="w-full h-auto object-contain rounded-lg border border-slate-200 bg-white p-2">
+                    <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+                        <strong class="text-slate-800">Fallas por poste frente al promedio de la red.</strong> P030 con 42 fallas.
+                    </p>
                 </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
-                    <p class="text-slate-600"><code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_poste.zona</code> y <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">fact_alumbrado.id_estado</code>.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
-                    <p class="text-slate-600">Tabla de contingencia cruzando ubicación y estados críticos para calcular proporciones de fallo por sector.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
-                    <p class="text-slate-600">La Zona Sur concentra la mayor tasa de fallas relativas (8% de sus dispositivos), pese a ser la de menor densidad.</p>
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">¿Qué postes registran más fallas y deben ser priorizados para revisión?</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Poste, zona, estado <code class="bg-slate-200 px-1 rounded">FALLA</code> y lecturas encendidas.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Conteo de lecturas en estado crítico por poste y ordenamiento de mayor a menor.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-800 block mb-1">4. Resultado</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">2.705 fallas totales (promedio 27,05). <strong>P030 tiene 42</strong> (1,55 veces el promedio).</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Unos pocos superan la media, pero los valores se mantienen en rangos de probabilidad por azar.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Un valor de 42 no confirma un defecto estructural absoluto, pues entra en la variación aleatoria esperada.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Permite estructurar el orden operativo de inspección técnica (Decisión 1).</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Las fallas fueron simuladas estocásticamente; es una correlación y no una causa directa.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
-                    <p class="text-slate-700">Relación inversa entre volumen de postes y estabilidad: los sectores periféricos sufren mayor proporción de averías.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
-                    <p class="text-slate-700">Posible vulnerabilidad por factores ambientales, fluctuaciones de red o menor frecuencia de mantenimiento preventivo.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
-                    <p class="text-slate-700">Orienta la priorización de cuadrillas de intervención técnica hacia la Zona Sur para optimizar la confiabilidad.</p>
-                </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
-                    <p class="text-slate-700">No incluye el tiempo de respuesta o resolución de los reportes por parte del equipo de mantenimiento.</p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <!-- ================= CONOCIMIENTO 5 ================= -->
-        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <section id="c5" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6 scroll-mt-20">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
-                <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
-                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">5</span>
-                    <span>Patrón Multivariable de Alertas por Zona, Horario y Tipo de Luminaria</span>
-                </h3>
-                <span class="text-xs bg-rose-100 text-rose-800 px-3 py-1 rounded-full font-semibold w-fit border border-rose-200">Análisis Multivariado Directo</span>
+                <h2 class="text-xl font-bold text-slate-900 flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm shrink-0">5</span>
+                    <span>La falla es rara: 0,52 % de las lecturas con el poste encendido</span>
+                </h2>
+                <span class="text-xs bg-rose-100 text-rose-800 px-3 py-1 rounded-full font-semibold w-fit border border-rose-200">Página Calidad de datos · Univariado (estado)</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
-                    <p class="text-slate-600">¿Cómo interactúan simultáneamente la zona, la franja horaria y el tipo de dispositivo para detonar alertas críticas en la red?</p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <div class="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between">
+                    <img src="{{ url_for('static', filename='img/conocimiento5.png') }}" alt="Lecturas por estado" class="w-full h-auto object-contain rounded-lg border border-slate-200 bg-white p-2">
+                    <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+                        <strong class="text-slate-800">Lecturas por estado (1.043.772 válidas).</strong> Tasa de falla del 0,52% sobre encendidas.
+                    </p>
                 </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
-                    <p class="text-slate-600"><code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_poste.zona</code>, <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_tiempo.franja_horaria</code>, <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">dim_poste.tipo</code> y <code class="text-xs bg-slate-200 px-1 py-0.5 rounded">fact.alerta</code>.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
-                    <p class="text-slate-600">Consulta multivariada cruzando de forma directa las tres dimensiones sobre el modelo estrella para aislar subconjuntos críticos.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
-                    <p class="text-slate-600">Los dispositivos LED de alta potencia en la Zona Sur durante la madrugada (02:00-05:00) concentran el 45% de alertas de voltaje.</p>
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">1. Pregunta</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">¿Cómo se reparten las lecturas globales entre encendido, apagado y fallas?</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">2. Variables</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Estado de la lectura (<code class="bg-slate-200 px-1 rounded">ENCENDIDO</code>, <code class="bg-slate-200 px-1 rounded">APAGADO</code>, <code class="bg-slate-200 px-1 rounded">FALLA</code>).</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">3. Procedimiento</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Conteo de registros por estado y cálculo de proporción frente al universo operativo.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span class="font-semibold text-rose-700 block mb-1">4. Resultado</span>
+                            <p class="text-slate-600 text-xs leading-relaxed">Apagado 50,24%, Encendido 49,50% y <strong>Falla 0,52%</strong> (sobre lecturas activas).</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Los estados operativos principales se dividen equitativamente; las fallas son excepcionales.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Refleja el comportamiento estándar de 12 horas operativas y la tasa de error configurada.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Define el umbral base de control para detectar anomalías en nodos específicos.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
+                            <p class="text-slate-700 text-xs leading-relaxed">Los estados de error son teóricos y generados por modelo estocástico.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm bg-rose-50/50 p-4 rounded-xl border border-rose-100">
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">5. Hallazgo</span>
-                    <p class="text-slate-700">Las alertas responden a un comportamiento sistémico complejo ligado a la exigencia de carga en sectores periféricos.</p>
+    </div>
+
+    <!-- ================= VALIDACIÓN ================= -->
+    <section id="validacion" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div class="border-b border-slate-100 pb-4">
+            <h2 class="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                <span class="w-2.5 h-6 bg-rose-600 rounded-full inline-block"></span>
+                <span>Validación</span>
+            </h2>
+            <p class="text-sm text-slate-500 mt-1">Cómo comprobamos que los hallazgos salen de los datos.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <div class="lg:col-span-5 overflow-x-auto border border-slate-200 rounded-xl">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200 uppercase text-slate-600">
+                            <th class="py-3 px-4 font-bold">Comparación</th>
+                            <th class="py-3 px-4 font-bold text-right">Registros por grupo</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                        <tr>
+                            <td class="py-2.5 px-4 font-medium text-slate-900">Postes</td>
+                            <td class="py-2.5 px-4 text-right">10.500 lecturas por poste (100 postes)</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-medium text-slate-900">Zonas</td>
+                            <td class="py-2.5 px-4 text-right"><strong>208.706 a 208.810</strong> lecturas por zona</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-medium text-slate-900">Estados</td>
+                            <td class="py-2.5 px-4 text-right">Apagado 524.400 · Encendido 516.667 · Falla 2.705</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-medium text-slate-900">Días de la semana</td>
+                            <td class="py-2.5 px-4 text-right">5 o 6 días de cada uno (37 días en total)</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-medium text-slate-900">Horas del día</td>
+                            <td class="py-2.5 px-4 text-right">36 o 37 días de cada hora</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-600">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <strong class="text-slate-900 block mb-1">Faltantes</strong>
+                    6.228 mediciones (0,59 %) rechazadas en ETL con registro de motivo. Voltaje nulo conservado (<strong>105 lecturas, 0,01 %</strong>) sin alterar energía.
                 </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">6. Interpretación</span>
-                    <p class="text-slate-700">Existe una caída de tensión y sobrecarga en los transformadores de la Zona Sur durante las horas de menor temperatura nocturna.</p>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <strong class="text-slate-900 block mb-1">Atípicos investigados</strong>
+                    El valor <code class="bg-slate-200 px-1 rounded">9999</code> de potencia representa código de error del sensor y se aísla correctamente en rechazos.
                 </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">7. Utilidad</span>
-                    <p class="text-slate-700">Permite fundamentar una reingeniería eléctrica focalizada en los nodos críticos de la periferia sur del municipio.</p>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <strong class="text-slate-900 block mb-1">Repetible</strong>
+                    Proceso ETL determinista y validado con conteos idénticos en pruebas consecutivas.
                 </div>
-                <div>
-                    <span class="font-semibold text-rose-800 block mb-1">8. Limitación</span>
-                    <p class="text-slate-700">Requiere inspección de campo con analizadores de redes eléctricos para corroborar las caídas de tensión simuladas.</p>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <strong class="text-slate-900 block mb-1">Coincide con SQL</strong>
+                    Cifras validadas directamente sobre el DW: <strong>1.727,10 kWh</strong> y <strong>2.705 fallas</strong>.
                 </div>
             </div>
         </div>
+    </section>
 
-    </div>
+    <!-- ================= DOS DECISIONES ================= -->
+    <section id="decisiones" class="space-y-6">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+            <span class="inline-block bg-rose-100 text-rose-800 text-xs font-bold px-3 py-1.5 rounded-full mb-3">
+                GESTIÓN DEL MÓDULO DE ALUMBRADO
+            </span>
+            <h2 class="text-2xl font-bold text-slate-900">Dos decisiones</h2>
+            <p class="text-sm text-slate-500 mt-1 max-w-3xl">
+                Acciones estratégicas orientadas por el análisis de datos para la optimización del servicio de alumbrado.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- Decisión 1 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <div class="p-6 sm:p-8 border-b border-slate-100 flex items-center justify-between gap-3">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Decisión 1</span>
+                        <h3 class="text-xl font-bold text-slate-900 mt-1">Revisar los diez postes con más fallas, empezando por P030</h3>
+                    </div>
+                    <span class="w-9 h-9 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm shrink-0">D1</span>
+                </div>
+                <div class="p-6 sm:p-8 space-y-3 text-sm flex-1">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <span class="font-semibold text-rose-700 block mb-1">1. Acción propuesta</span>
+                        <p class="text-slate-600 text-xs leading-relaxed">Revisión física de cableado y fuentes en <code class="bg-slate-200 px-1 rounded">P030, P078, P035, P077, P088, P057, P008, P050, P033 y P093</code>.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <span class="font-semibold text-rose-700 block mb-1">2. Hallazgo de respaldo</span>
+                        <p class="text-slate-600 text-xs leading-relaxed">El poste P030 concentra 42 fallas, liderando el ranking de anomalías en la red.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <span class="font-semibold text-rose-700 block mb-1">3. Dirigido a</span>
+                        <p class="text-slate-600 text-xs leading-relaxed">Cuadrillas técnicas de mantenimiento preventivo y correctivo.</p>
+                    </div>
+                    <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                        <span class="font-semibold text-rose-800 block mb-1">4. Mejora esperada e indicador</span>
+                        <p class="text-slate-700 text-xs leading-relaxed">Reducir la tasa de fallas por debajo de la línea base del 0,52% por poste.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decisión 2 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <div class="p-6 sm:p-8 border-b border-slate-100 flex items-center justify-between gap-3">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Decisión 2</span>
+                        <h3 class="text-xl font-bold text-slate-900 mt-1">Bajar la intensidad de las luminarias en la madrugada</h3>
+                    </div>
+                    <span class="w-9 h-9 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm shrink-0">D2</span>
+                </div>
+                <div class="p-6 sm:p-8 space-y-3 text-sm flex-1">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <span class="font-semibold text-rose-700 block mb-1">1. Acción propuesta</span>
+                        <p class="text-slate-600 text-xs leading-relaxed">Atenuar la potencia lumínica en la franja horaria de 00:00 a 05:59 horas.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <span class="font-semibold text-rose-800 block mb-1">2. Hallazgo de respaldo</span>
+                        <p class="text-slate-600 text-xs leading-relaxed">La madrugada concentra el 50,7% del consumo energético total de la red.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <span class="font-semibold text-rose-700 block mb-1">3. Dirigido a</span>
+                        <p class="text-slate-600 text-xs leading-relaxed">Gestión de telegestión y control energético municipal.</p>
+                    </div>
+                    <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                        <span class="font-semibold text-rose-800 block mb-1">4. Mejora esperada e indicador</span>
+                        <p class="text-slate-700 text-xs leading-relaxed">Disminuir un 5,1% el consumo global de energía por cada 10% de atenuación aplicada.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
 </div>
 {% endblock %}
