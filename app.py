@@ -1,10 +1,23 @@
-import os, time
+import os
+import time
+from threading import Lock
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-ESTADO = {"postes": [], "actualizado": 0}
 API_KEY = os.environ.get("API_KEY", "alumbrado2026")
+
+# Estado compartido entre el POST del ESP32 y el GET de la página
+ESTADO = {
+    "postes": [],
+    "fase_actual": None,
+    "postes_activos": 0,
+    "consumo_total_kw": 0.0,
+    "uptime_ms": 0,
+    "dispositivo": "",
+    "actualizado": 0,
+}
+ESTADO_LOCK = Lock()
 
 
 @app.route("/")
@@ -54,21 +67,42 @@ def resultados():
 
 @app.route("/api/estado", methods=["POST"])
 def recibir_estado():
+    # Validación segura de la API Key
     if request.headers.get("X-API-Key") != API_KEY:
         return jsonify(error="no autorizado"), 401
-    datos = request.get_json(force=True, silent=True) or {}
-    ESTADO["postes"] = datos.get("postes", [])
-    ESTADO["actualizado"] = time.time()
+
+    datos = request.get_json(force=True, silent=True)
+    
+    # Si el ESP32 no envió un JSON válido, evitamos romper el estado actual
+    if not isinstance(datos, dict):
+        return jsonify(error="payload invalido"), 400
+
+    with ESTADO_LOCK:
+        # Actualizamos solo si vienen los datos de postes para evitar sobreescrituras vacías
+        if "postes" in datos:
+            ESTADO["postes"] = datos.get("postes", [])
+            
+        ESTADO["fase_actual"] = datos.get("fase_actual", ESTADO["fase_actual"])
+        ESTADO["postes_activos"] = datos.get("postes_activos", ESTADO["postes_activos"])
+        ESTADO["consumo_total_kw"] = datos.get("consumo_total_kw", ESTADO["consumo_total_kw"])
+        ESTADO["uptime_ms"] = datos.get("uptime_ms", ESTADO["uptime_ms"])
+        ESTADO["dispositivo"] = datos.get("dispositivo", ESTADO["dispositivo"])
+        ESTADO["actualizado"] = time.time()
+
     return jsonify(ok=True)
 
 
 @app.route("/api/estado", methods=["GET"])
 def leer_estado():
-    respuesta = jsonify({**ESTADO, "ahora": time.time()})
-    respuesta.headers["Cache-Control"] = "no-store"
+    with ESTADO_LOCK:
+        copia = dict(ESTADO)
+    respuesta = jsonify({**copia, "ahora": time.time()})
+    respuesta.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+    respuesta.headers["Pragma"] = "no-cache"
     return respuesta
 
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    # threaded=True permite atender simultáneamente al navegador y al ESP32 sin bloqueos
+    app.run(host="0.0.0.0", port=port, threaded=True, debug=True)

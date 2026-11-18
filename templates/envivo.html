@@ -11,11 +11,11 @@
                 <span id="status-tag-text" class="text-xs font-semibold uppercase tracking-wider text-amber-600">Estado: En espera de flujo</span>
             </div>
             <h1 class="text-2xl font-bold text-slate-800 mt-1">Monitoreo Físico — Alumbrado Público Inteligente</h1>
-            <p class="text-sm text-slate-500 mt-0.5">Universidad de Cundinamarca — Telemetría y control de nodos por sector.</p>
+            <p class="text-sm text-slate-500 mt-0.5">Universidad de Cundinamarca — Telemetría y control de los 6 nodos por sector.</p>
         </div>
         <div class="flex flex-wrap items-center gap-2 text-xs font-medium">
             <span class="bg-rose-50 text-rose-700 border border-rose-200 px-3 py-1.5 rounded-lg">Proyecto: <strong>Alumbrado Inteligente</strong></span>
-            <span id="conexion-badge" class="bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1.5 rounded-lg">ESP32-S3: En espera</span>
+            <span id="conexion-badge" class="bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1.5 rounded-lg">Frog Board ESP32: En espera</span>
         </div>
     </div>
 
@@ -27,33 +27,34 @@
                 <p id="kpi-nodos" class="text-3xl font-bold text-slate-800">0 / 6</p>
                 <span id="kpi-nodos-badge" class="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">Standby</span>
             </div>
-            <p class="text-xs text-slate-500 mt-2">Pines GPIO 4, 5, 6, 7, 15, 16</p>
+            <p class="text-xs text-slate-500 mt-2">Postes alumbrando en este instante (incluye titilando)</p>
         </div>
 
         <div class="bg-white rounded-2xl shadow-sm border border-rose-100 p-5">
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Consumo Energético</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Consumo Total</p>
             <div class="flex items-baseline justify-between mt-2">
                 <p class="text-3xl font-bold text-rose-600"><span id="kpi-consumo">0.00</span> <span class="text-base font-normal text-slate-500">kW</span></p>
                 <span class="text-xs font-medium text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">Tiempo Real</span>
             </div>
-            <p class="text-xs text-slate-500 mt-2">Medición acumulada por zona</p>
+            <p class="text-xs text-slate-500 mt-2">Suma total instantánea</p>
         </div>
 
         <div class="bg-white rounded-2xl shadow-sm border border-rose-100 p-5">
             <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Estado del Sistema</p>
             <div class="flex items-baseline justify-between mt-2">
                 <p id="kpi-estado-texto" class="text-xl font-bold text-amber-600 mt-1">En espera...</p>
+                <span id="kpi-fase" class="text-xs font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">Fase —</span>
             </div>
-            <p class="text-xs text-slate-500 mt-2">Esperando enlace inalámbrico</p>
+            <p class="text-xs text-slate-500 mt-2">Control de secuencia por fases</p>
         </div>
 
         <div class="bg-white rounded-2xl shadow-sm border border-rose-100 p-5">
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Alertas de Fallas</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Alertas del Sistema</p>
             <div class="flex items-baseline justify-between mt-2">
-                <p class="text-3xl font-bold text-slate-800">0</p>
-                <span class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Sin anomalías</span>
+                <p id="kpi-alertas" class="text-3xl font-bold text-slate-800">0</p>
+                <span id="kpi-alertas-badge" class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Sin anomalías</span>
             </div>
-            <p class="text-xs text-slate-500 mt-2">Integridad de red estable</p>
+            <p class="text-xs text-slate-500 mt-2">Monitoreo de nodos y red</p>
         </div>
     </div>
 
@@ -62,8 +63,8 @@
         <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-rose-100 p-6 flex flex-col">
             <div class="flex items-center justify-between mb-4">
                 <div>
-                    <h2 class="text-base font-bold text-slate-800">Evolución Temporal del Consumo</h2>
-                    <p class="text-xs text-slate-500">Comportamiento energético por franja horaria (kW)</p>
+                    <h2 class="text-base font-bold text-slate-800">Evolución Temporal del Consumo Global</h2>
+                    <p class="text-xs text-slate-500">Comportamiento energético de los 6 postes (kW)</p>
                 </div>
                 <span class="text-xs font-medium text-rose-600 bg-rose-50 border border-rose-100 px-2.5 py-1 rounded-lg">Telemetría</span>
             </div>
@@ -74,8 +75,8 @@
 
         <div class="bg-white rounded-2xl shadow-sm border border-rose-100 p-6 flex flex-col">
             <div class="mb-4">
-                <h2 class="text-base font-bold text-slate-800">Consumo por Sector</h2>
-                <p class="text-xs text-slate-500">Norte Oeste, Norte Centro y Norte Este</p>
+                <h2 class="text-base font-bold text-slate-800">Consumo por Sectores</h2>
+                <p class="text-xs text-slate-500">Distribución de los 3 sectores</p>
             </div>
             <div class="relative flex-1 min-h-[260px]">
                 <canvas id="chartSectoresLive"></canvas>
@@ -87,8 +88,8 @@
     <div class="bg-white rounded-2xl shadow-sm border border-rose-100 overflow-hidden">
         <div class="p-6 border-b border-rose-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div>
-                <h2 class="text-base font-bold text-slate-800">Mapeo de Sectores y Luminarias (ESP32-S3)</h2>
-                <p class="text-xs text-slate-500">Distribución de los 6 nodos físicos por cuadrante</p>
+                <h2 class="text-base font-bold text-slate-800">Mapeo de Nodos Físicos (Frog Board ESP32)</h2>
+                <p class="text-xs text-slate-500">Estado en tiempo real de los 6 postes distribuidos</p>
             </div>
             <span id="tabla-status-badge" class="text-xs px-3 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-lg">Sin flujo de datos</span>
         </div>
@@ -100,51 +101,64 @@
                         <th class="px-6 py-3.5">Pin Físico</th>
                         <th class="px-6 py-3.5">Sector Asignado</th>
                         <th class="px-6 py-3.5">Voltaje</th>
+                        <th class="px-6 py-3.5">Consumo</th>
                         <th class="px-6 py-3.5">Estado en Vivo</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-rose-50">
+                    <!-- Poste 1 -->
                     <tr class="hover:bg-rose-50/30 transition-colors">
                         <td class="px-6 py-4 font-semibold text-slate-800">Poste #01</td>
                         <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 4</td>
                         <td class="px-6 py-4 font-medium text-slate-700">Norte Oeste</td>
                         <td class="px-6 py-4">3.3 V</td>
-                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                        <td class="px-6 py-4 font-mono text-xs"><span id="nodo-0-kw">0.000</span> kW</td>
+                        <td class="px-6 py-4"><span id="nodo-0-estado" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
                     </tr>
+                    <!-- Poste 2 -->
                     <tr class="hover:bg-rose-50/30 transition-colors">
                         <td class="px-6 py-4 font-semibold text-slate-800">Poste #02</td>
-                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 5</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 16</td>
                         <td class="px-6 py-4 font-medium text-slate-700">Norte Oeste</td>
                         <td class="px-6 py-4">3.3 V</td>
-                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                        <td class="px-6 py-4 font-mono text-xs"><span id="nodo-1-kw">0.000</span> kW</td>
+                        <td class="px-6 py-4"><span id="nodo-1-estado" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
                     </tr>
+                    <!-- Poste 3 -->
                     <tr class="hover:bg-rose-50/30 transition-colors">
                         <td class="px-6 py-4 font-semibold text-slate-800">Poste #03</td>
-                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 6</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 17</td>
                         <td class="px-6 py-4 font-medium text-slate-700">Norte Centro</td>
                         <td class="px-6 py-4">3.3 V</td>
-                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                        <td class="px-6 py-4 font-mono text-xs"><span id="nodo-2-kw">0.000</span> kW</td>
+                        <td class="px-6 py-4"><span id="nodo-2-estado" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
                     </tr>
+                    <!-- Poste 4 -->
                     <tr class="hover:bg-rose-50/30 transition-colors">
                         <td class="px-6 py-4 font-semibold text-slate-800">Poste #04</td>
-                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 7</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 18</td>
                         <td class="px-6 py-4 font-medium text-slate-700">Norte Centro</td>
                         <td class="px-6 py-4">3.3 V</td>
-                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                        <td class="px-6 py-4 font-mono text-xs"><span id="nodo-3-kw">0.000</span> kW</td>
+                        <td class="px-6 py-4"><span id="nodo-3-estado" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
                     </tr>
+                    <!-- Poste 5 -->
                     <tr class="hover:bg-rose-50/30 transition-colors">
                         <td class="px-6 py-4 font-semibold text-slate-800">Poste #05</td>
-                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 15</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 19</td>
                         <td class="px-6 py-4 font-medium text-slate-700">Norte Este</td>
                         <td class="px-6 py-4">3.3 V</td>
-                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                        <td class="px-6 py-4 font-mono text-xs"><span id="nodo-4-kw">0.000</span> kW</td>
+                        <td class="px-6 py-4"><span id="nodo-4-estado" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
                     </tr>
+                    <!-- Poste 6 -->
                     <tr class="hover:bg-rose-50/30 transition-colors">
                         <td class="px-6 py-4 font-semibold text-slate-800">Poste #06</td>
-                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 16</td>
+                        <td class="px-6 py-4 font-mono text-xs text-rose-600">GPIO 21</td>
                         <td class="px-6 py-4 font-medium text-slate-700">Norte Este</td>
                         <td class="px-6 py-4">3.3 V</td>
-                        <td class="px-6 py-4"><span class="nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
+                        <td class="px-6 py-4 font-mono text-xs"><span id="nodo-5-kw">0.000</span> kW</td>
+                        <td class="px-6 py-4"><span id="nodo-5-estado" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">En espera</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -156,34 +170,40 @@
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Gráfica de Evolución Temporal
+    const POLL_MS = 500;          
+    const HISTORIAL_PUNTOS = 40;  
+    const CONSUMO_NOMINAL = 0.150; 
+
+    // Gráfica de Evolución Temporal Global
     const ctxLive = document.getElementById('chartConsumoLive').getContext('2d');
     const consumoChart = new Chart(ctxLive, {
         type: 'line',
         data: {
-            labels: ['18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+            labels: Array(HISTORIAL_PUNTOS).fill(''),
             datasets: [{
-                label: 'Consumo (kW)',
-                data: [0, 0, 0, 0, 0, 0],
+                label: 'Consumo Total (kW)',
+                data: Array(HISTORIAL_PUNTOS).fill(0),
                 borderColor: '#e11d48',
                 backgroundColor: 'rgba(225, 29, 72, 0.08)',
                 borderWidth: 2.5,
                 fill: true,
-                tension: 0.35
+                stepped: true,      
+                pointRadius: 0
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            animation: false,
             plugins: { legend: { display: false } },
             scales: {
-                x: { grid: { display: false }, ticks: { color: '#64748b' } },
-                y: { grid: { color: '#ffe4e6' }, ticks: { color: '#64748b' } }
+                x: { grid: { display: false }, ticks: { display: false } },
+                y: { beginAtZero: true, suggestedMax: 0.9, grid: { color: '#ffe4e6' }, ticks: { color: '#64748b' } }
             }
         }
     });
 
-    // Gráfica de Barras por Sector (Norte Oeste, Norte Centro, Norte Este)
+    // Gráfica de Barras por los 3 Sectores
     const ctxSectores = document.getElementById('chartSectoresLive').getContext('2d');
     const sectoresChart = new Chart(ctxSectores, {
         type: 'bar',
@@ -199,48 +219,126 @@
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            animation: false,
             plugins: { legend: { display: false } },
             scales: {
                 x: { grid: { display: false }, ticks: { color: '#64748b' } },
-                y: { grid: { color: '#ffe4e6' }, ticks: { color: '#64748b' } }
+                y: { beginAtZero: true, suggestedMax: 0.3, grid: { color: '#ffe4e6' }, ticks: { color: '#64748b' } }
             }
         }
     });
 
-    // Función dinámica para actualizar estado cuando haya flujo del ESP32-S3
+    const CLS_BADGE = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ";
+
     function actualizarEstadoEnVivo() {
-        fetch('/api/estado-nodos')
+        return fetch('/api/estado', { cache: 'no-store' })
             .then(response => response.json())
             .then(data => {
-                if (data.conectado) {
+                const hayFlujo = data.postes && data.postes.length > 0 && (data.ahora - data.actualizado < 5);
+
+                if (hayFlujo) {
                     document.getElementById('status-dot').className = "h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse";
                     document.getElementById('status-tag-text').className = "text-xs font-semibold uppercase tracking-wider text-emerald-600";
                     document.getElementById('status-tag-text').innerText = "Estado: Flujo de datos activo";
-                    
+
                     document.getElementById('conexion-badge').className = "bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-lg";
-                    document.getElementById('conexion-badge').innerText = "ESP32-S3: Conectado (Flujo activo)";
-                    
+                    document.getElementById('conexion-badge').innerText = "Frog Board ESP32: Conectado (En vivo)";
+
                     document.getElementById('tabla-status-badge').className = "text-xs px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg";
-                    document.getElementById('tabla-status-badge').innerText = "Recibiendo telemetría en vivo";
+                    document.getElementById('tabla-status-badge').innerText = "Recibiendo telemetría de los 6 nodos";
 
-                    document.getElementById('kpi-nodos').innerText = "6 / 6";
-                    document.getElementById('kpi-nodos-badge').className = "text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full";
-                    document.getElementById('kpi-nodos-badge').innerText = "Operativo";
-                    document.getElementById('kpi-consumo').innerText = data.consumoTotal || "1.42";
-                    document.getElementById('kpi-estado-texto').className = "text-xl font-bold text-emerald-600 mt-1";
-                    document.getElementById('kpi-estado-texto').innerText = "Hay flujo en vivo";
+                    let activosCount = 0;
+                    let alertasCount = 0;
+                    let consumoTotalGlobal = 0;
+                    let consumoOeste = 0;
+                    let consumoCentro = 0;
+                    let consumoEste = 0;
 
-                    document.querySelectorAll('.nodo-estado').forEach(el => {
-                        el.className = "nodo-estado inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200";
-                        el.innerText = "Encendido";
+                    data.postes.forEach((poste, index) => {
+                        const estado = poste.estado || "";
+                        const esFalla = estado.includes("Titilando") || estado.includes("Falla");
+
+                        let kw = Number(poste.consumo_kw ?? poste.consumo);
+                        if (Number.isNaN(kw)) kw = (estado === "Encendido") ? CONSUMO_NOMINAL : 0;
+
+                        const encendido = (poste.encendido !== undefined)
+                            ? Boolean(poste.encendido)
+                            : (kw > 0 || estado === "Encendido");
+
+                        if (encendido) activosCount++;
+                        if (esFalla) alertasCount++;
+                        consumoTotalGlobal += kw;
+
+                        if (poste.sector === "Norte Oeste") consumoOeste += kw;
+                        if (poste.sector === "Norte Centro") consumoCentro += kw;
+                        if (poste.sector === "Norte Este") consumoEste += kw;
+
+                        const kwEl = document.getElementById(`nodo-${index}-kw`);
+                        if (kwEl) kwEl.innerText = kw.toFixed(3);
+
+                        const badgeTabla = document.getElementById(`nodo-${index}-estado`);
+                        if (badgeTabla) {
+                            if (esFalla) {
+                                badgeTabla.className = CLS_BADGE + (encendido
+                                    ? "bg-amber-200 text-amber-900 border-amber-400"
+                                    : "bg-amber-50 text-amber-700 border-amber-200");
+                                badgeTabla.innerText = `${estado} · ${encendido ? "ON" : "OFF"}`;
+                            } else if (encendido) {
+                                badgeTabla.className = CLS_BADGE + "bg-emerald-50 text-emerald-700 border-emerald-200";
+                                badgeTabla.innerText = "Encendido";
+                            } else {
+                                badgeTabla.className = CLS_BADGE + "bg-slate-100 text-slate-600 border-slate-200";
+                                badgeTabla.innerText = "Apagado";
+                            }
+                        }
                     });
+
+                    document.getElementById('kpi-nodos').innerText = `${activosCount} / 6`;
+                    document.getElementById('kpi-nodos-badge').className = (activosCount > 0)
+                        ? "text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full"
+                        : "text-xs font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full";
+                    document.getElementById('kpi-nodos-badge').innerText = activosCount > 0 ? "Operativo" : "Standby";
+
+                    document.getElementById('kpi-consumo').innerText = consumoTotalGlobal.toFixed(2);
+
+                    document.getElementById('kpi-estado-texto').className = "text-xl font-bold text-emerald-600 mt-1";
+                    document.getElementById('kpi-estado-texto').innerText = "Secuencia Activa";
+                    if (data.fase_actual !== undefined) {
+                        document.getElementById('kpi-fase').innerText = `Fase ${data.fase_actual}`;
+                    }
+
+                    document.getElementById('kpi-alertas').innerText = alertasCount;
+                    const badgeAlertas = document.getElementById('kpi-alertas-badge');
+                    if (alertasCount > 0) {
+                        badgeAlertas.className = "text-xs font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200 animate-pulse";
+                        badgeAlertas.innerText = "Alerta detectada";
+                    } else {
+                        badgeAlertas.className = "text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full";
+                        badgeAlertas.innerText = "Sin anomalías";
+                    }
+
+                    consumoChart.data.datasets[0].data.shift();
+                    consumoChart.data.datasets[0].data.push(consumoTotalGlobal);
+                    consumoChart.update('none');
+
+                    sectoresChart.data.datasets[0].data = [consumoOeste, consumoCentro, consumoEste];
+                    sectoresChart.update('none');
+
+                } else {
+                    document.getElementById('status-dot').className = "h-2.5 w-2.5 rounded-full bg-amber-500 animate-pulse";
+                    document.getElementById('status-tag-text').className = "text-xs font-semibold uppercase tracking-wider text-amber-600";
+                    document.getElementById('status-tag-text').innerText = "Estado: En espera de flujo";
+
+                    document.getElementById('conexion-badge').className = "bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1.5 rounded-lg";
+                    document.getElementById('conexion-badge').innerText = "Frog Board ESP32: En espera";
                 }
             })
-            .catch(() => {
-                // Mantiene estado "En espera" si no hay respuesta aún
-            });
+            .catch(() => {});
     }
 
-    setInterval(actualizarEstadoEnVivo, 3000);
+    function bucleActualizacion() {
+        actualizarEstadoEnVivo().finally(() => setTimeout(bucleActualizacion, POLL_MS));
+    }
+    bucleActualizacion();
 </script>
 {% endblock %}
